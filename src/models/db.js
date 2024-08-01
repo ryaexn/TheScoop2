@@ -5,10 +5,10 @@ const User = require('./User');
 
 const { MongoClient } = require('mongodb'); 
 
-function connect() {
+async function connect() {
 
   try{
-    mongoose.connect(process.env.MONGODB_URI);
+    await mongoose.connect(process.env.MONGODB_URI);
     mongoose.model('Review', Review.schema);
     mongoose.model('Restaurant', Restaurant.schema);
     mongoose.model('User', User.schema);

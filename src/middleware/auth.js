@@ -8,9 +8,9 @@ function isAuthenticated(req, res, next) {
     res.locals.userId = req.session.userId;
     res.locals.userIcon = req.session.userIcon;
 
-    console.log("-------CURRENT SESSION-------------------\n");
-    console.log(req.session);
-    console.log("-----------------------------------------\n");
+    // console.log("-------CURRENT SESSION-------------------\n");
+    // console.log(req.session);
+    // console.log("-----------------------------------------\n");
     
     next();
 }

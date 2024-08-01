@@ -67,7 +67,7 @@ async function main(){
         console.log(`Express server is now listening on port ${process.env.SERVER_PORT}`);
         try {
              // await 
-             connect();
+            await connect();
             console.log(`Now connected to MongoDB`);
 
             // await checkDatabase().then( (dbExists) => {
