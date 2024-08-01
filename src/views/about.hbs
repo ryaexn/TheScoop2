@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>The Scoop</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="icon" type="image/x-icon" href="/assets/logo.png"> 
+
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        
+        <link rel="stylesheet" href="styles/base.css">  
+        {{!-- <link rel="stylesheet" href="styles/landing.css">   --}}
+        <link rel="stylesheet" href="styles/about.css">  
+        
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+        <script src="scripts/swal-base.js"></script>
+        <script src="scripts/login.js"></script>
+        <script src="scripts/search-popup.js" defer></script>
+    </head>
+
+    <body>
+        {{> header}}
+        {{> bluebanner}}
+    <main class="about" >
+    <div class="header">
+        <h1 id ="aboutus">
+        About Us
+        </h1>
+        <p id ="abouttheapp">
+            The Scoop is a dedicated web platform designed to unite frozen dessert connoisseurs from around the world. Drawing inspiration from popular review blogs, The Scoop aims to provide a space where sweet-tooth enthusiasts can share their delightful experiences with others. Whether it's the latest gelato in town or a classic ice cream flavor rediscovered, users can post reviews, rate their favorite treats, and engage with a community of like-minded dessert lovers.
+            <br><br>
+            The Scoop is more than just a review site; it's a community where every scoop tells a story. Join us and share your frozen dessert adventures today!
+        </p>
+        
+    </div>
+    <hr class="gradient-blue-hr">
+
+        <h2 id="libs">Library and Packages Used</h2>
+        <div class="list">
+            <div class="listleft">
+                <li>express</li>
+                <li>express-handlebars</li>
+                <li>express-session</li>
+                <li>memorystore</li>
+                <li>mongoose</li>
+                
+            </div>
+            
+            <div class="listright">
+                <li>multer</li>
+                <li>SweetAlert</li>
+                <li>bcryptjs</li>
+                <li>dotenv</li>
+                <li>body-parser</li>
+            </div>
+        </div>
+    
+
+    <div class="developerarea">
+        <h2>Yours, truly</h2>
+        <div class="developerinfo">
+            <div class="developer">
+                <h3>Ryan Vasquez 🤠</h3>
+                <p class = "sub"> ryan_vasquez@dlsu.edu.ph</p>
+            </div>
+        </div>
+    </div>
+    </main>
+
+        {{> footer}}    
+    </body>
+</html>

@@ -17,7 +17,7 @@ router.use(isAuthenticated);
 
 // Landing Page
 router.get(['/', '/index'], handleIndexResponse);
-
+router.get('/about', (req,res) => res.render('about'));
 // Login, Sign up redirection
 router.post('/login', handleLoginRequest);
 router.get('/logout', handleLogoutRequest);
@@ -54,10 +54,10 @@ router.post('/update-review', uploadReviewMedia.single('newReviewImage'), update
 router.post('/delete-review', deleteReviewRequest);
 
 // // // TODO: Handle missing pages 
-// router.get('*', (req, resp) => {
-//     console.log("404");
-//     resp.redirect("/?error=true");
-// })
+router.get('*', (req, resp) => {
+    console.log("404");
+    resp.redirect("/?error=true");
+})
 
 // resetLikes();
 
