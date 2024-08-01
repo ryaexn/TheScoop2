@@ -1,0 +1,54 @@
+.about {
+    margin-left: 200px;
+    margin-right: 80px;
+    display: flex;
+    flex-direction: column;
+    margin-top: 70px;
+    font-family: 'DM Sans';
+}
+
+#abouttheapp {
+    margin-top: 5px;
+    color: #5a5959;
+}
+
+.sub {
+    color: #5a5959;
+}
+.developerarea {
+    margin-top:30px;
+}
+
+.header {
+    margin-bottom: 30px;
+}
+#aboutus{
+    text-align: left;
+}
+
+.developer {
+    display: flex;
+    flex-direction: column;
+    width: 250px;
+}
+
+.developerinfo {
+    margin-top: 5px;
+    display: flex;
+    flex-direction: row;
+    gap: 50px;
+}
+
+.libraryused{
+    margin-top: 70px;
+}
+
+.list {
+    margin-top: 5px;
+    margin-left: 10px;
+    display: flex;
+    flex-direction: row;
+    gap: 175px;
+}
+
+/* --------------------- */
