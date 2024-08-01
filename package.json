@@ -22,5 +22,6 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "description": "## Setting Up and Running the Application Locally To run the application locally on your machine, follow these simple steps:"
+  "description": "## Setting Up and Running the Application Locally To run the application locally on your machine, follow these simple steps:",
+  "devDependencies": {}
 }
