@@ -1,9 +1,9 @@
 .about {
-    margin-left: 200px;
-    margin-right: 80px;
+    margin-left: 10%;
+    margin-right: 10%;
     display: flex;
     flex-direction: column;
-    margin-top: 70px;
+    margin-block: 70px;
     font-family: 'DM Sans';
 }
 
@@ -52,3 +52,87 @@
 }
 
 /* --------------------- */
+
+.about{
+    padding: 0;
+    background-image: url('../assets/sprinkles.png');
+    background-repeat: no-repeat;
+    background-position: 120% 170%;
+    overflow:visible;
+}
+#aboutus {
+    font-size: 3rem;
+    letter-spacing: 0.25px;
+    word-spacing: 1px;
+    font-weight: 800;
+    font-family: 'Space Grotesk', sans-serif;
+    text-align: left;
+
+        color: #1b4d7a;
+        text-shadow: #99f2fb 3px 3px;
+    
+}
+
+#abouttheapp {
+    font-family: 'Lexend', sans-serif;
+    font-size: 1.2rem;
+    text-align: justify;
+    color: rgb(30, 29, 29);
+}
+
+#libs{
+    margin-top: 1rem;
+    margin-bottom: 0.5rem;
+    font-size: 2rem;
+    letter-spacing: 0.25px;
+    word-spacing: 1px;
+    font-weight: 800;
+    font-family: 'Space Grotesk', sans-serif;
+    text-align: left;
+
+        color: #1b4d7a;
+        text-shadow: #99f2fb 2px 2px;
+    
+}
+
+.list li {
+    font-size: 1rem;
+    font-weight: 550;
+    color: rgb(30, 29, 29);
+}
+
+.developerarea h2 {
+    margin-top: 1rem;
+    font-size: 2rem;
+    letter-spacing: 0.25px;
+    word-spacing: 1px;
+    font-weight: 800;
+    font-family: 'Space Grotesk', sans-serif;
+    text-align: left;
+
+        color: #1b4d7a;
+        text-shadow: #99f2fb 2px 2px;
+    
+}
+
+.developerarea h3 {
+
+    font-family: 'GlamourAbsolute_Regular', 'Space Grotesk', sans-serif;
+    font-size: 1.6rem;
+    letter-spacing: 0.8px;
+}
+
+.developerarea .sub {
+    font-size: 0.9rem;
+    font-family: 'Lexend', sans-serif;
+
+}
+
+ .sub > img {
+    width: 2rem;
+    aspect-ratio: 1;
+}
+
+.developerinfo{
+    padding-left: 1.3rem;
+}

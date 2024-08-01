@@ -43,7 +43,7 @@ async function handleEditUserResponse(req, resp){
 
     const user = await getUserByUsername(username);
     const {reviews, reviewsCount} = await getReviewsFromUser(username);
-
+    console.log(reviewsCount);
     // console.log(user);
     resp.render('edit-user-profile',{
         

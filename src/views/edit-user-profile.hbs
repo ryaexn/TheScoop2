@@ -167,7 +167,11 @@
             {{!-- DELETE BTN --}}
             <div class="justify-right" style="width: 100%; display:flex; gap: 1rem" >
                 <button onclick="window.location.href='/view-user-profile/{{user.username}}'" class="btn btn-primary">View Profile</button>
-                <button id="delete-account-btn" type="button" class="btn btn-default md-btn-flat">Delete Account</button>
+                {{#unless reviews}}
+                <button id="delete-account-btn" type="button" class="btn btn-default md-btn-flat dl" >Delete Account</button>
+                {{else}}
+                <button id="fake-delete-account-btn" type="button" class="btn btn-default md-btn-flat dl" >Delete Profile</button>
+                {{/unless}}
             </div>
             
 

@@ -1,5 +1,9 @@
 # The Scoop
 
+The Scoop is a simple web platform that aims to gather frozen dessert connoisseurs. Inspired by review blogs online, it aims to let sweet-tooth havers be able to share their experience with others through a simple web interface. 
+
+Link to site: https://thescoop2.onrender.com
+
 ## Setting Up and Running the Application Locally
 To run the application locally on your machine, follow these simple steps:
 
@@ -27,12 +31,7 @@ To run the application locally on your machine, follow these simple steps:
     Visit `http://localhost:3002` using any browser, preferably Chrome.
 
 ### Windows:
-
 Make sure to have nodeJS installed, as well as a running mongoDB Server.
-
-## Description of the Web Application
-
-The Scoop is a simple web platform that aims to gather frozen dessert connoisseurs. Inspired by review blogs online, it aims to let sweet-tooth havers be able to share their experience with others through a simple web interface. 
 
 ## Contributors
 - Ryan Vasquez

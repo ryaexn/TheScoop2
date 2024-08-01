@@ -257,3 +257,13 @@ contents .section-header-area{
     letter-spacing: 1.5px;
 }
 
+.dl{
+    background-color: #d65353;
+    color: white;
+}
+
+.dl:hover{
+    cursor:pointer;
+    background-color:#ba1a1a;
+    color: white;
+}
