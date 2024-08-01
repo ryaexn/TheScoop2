@@ -63,28 +63,26 @@ async function main(){
     app.use(express.urlencoded({ extended: true }));    
     app.use(router);
 
-    app.listen(process.env.SERVER_PORT, '0.0.0.0' , async () => {
+    app.listen(process.env.SERVER_PORT, async () => {
         console.log(`Express server is now listening on port ${process.env.SERVER_PORT}`);
         try {
-             // await 
+            
             await connect();
             console.log(`Now connected to MongoDB`);
-            // await checkDatabase().then( (dbExists) => {
-             //   console.log(dbExists);
-
-               // if (!dbExists){
-                    loadRestaurants();
-                    loadUsers();
-                    loadReviews();
-              //  }
-           // });
+            await checkDatabase().then( (dbExists) => {
+             console.log(dbExists);
+                if (!dbExists){
+                     loadRestaurants();
+                     loadUsers();
+                     loadReviews();
+                }
+         });
             
         } catch (err) {
             console.log('Connection to MongoDB failed:');
             console.error(err);
         }
     });
-
 
     process.on('SIGTERM',finalClose);  
     process.on('SIGINT', finalClose); 
