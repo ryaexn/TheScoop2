@@ -78,6 +78,8 @@ async function main(){
                 }
          });
             
+            
+
         } catch (err) {
             console.log('Connection to MongoDB failed:');
             console.error(err);
