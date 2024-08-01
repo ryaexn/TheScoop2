@@ -63,7 +63,7 @@ async function main(){
     app.use(express.urlencoded({ extended: true }));    
     app.use(router);
 
-    app.listen(process.env.SERVER_PORT, async () => {
+    app.listen(process.env.SERVER_PORT, '0.0.0.0' ,async () => {
         console.log(`Express server is now listening on port ${process.env.SERVER_PORT}`);
         try {
              // await 
