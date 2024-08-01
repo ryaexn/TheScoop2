@@ -6,7 +6,7 @@ To run the application locally on your machine, follow these simple steps:
 1. **Clone the Repository**:
     Open Terminal and run the following command:
     ```bash
-    git clone https://github.com/ryaexn/TheScoop.git
+    git clone https://github.com/ryaexn/TheScoop2.git
     ```
 
 2. **Navigate to the Project Directory**:
