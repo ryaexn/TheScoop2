@@ -6,14 +6,22 @@ const User = require('./User');
 const { MongoClient } = require('mongodb'); 
 
 function connect() {
+
+  try{
     mongoose.connect(process.env.MONGODB_URI);
     mongoose.model('Review', Review.schema);
     mongoose.model('Restaurant', Restaurant.schema);
     mongoose.model('User', User.schema);
+  } catch(err){
+    console.log("Error connecting to db");
+    console.log(err);
+    throw err;
+  }
+    
 }
 
 async function checkDatabase() {
-  
+
   const uri = 'mongodb://0.0.0.0:27017/';
   const databaseName = 'thescoop'
   
