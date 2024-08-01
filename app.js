@@ -69,14 +69,14 @@ async function main(){
             
             await connect();
             console.log(`Now connected to MongoDB`);
-            await checkDatabase().then( (dbExists) => {
-             console.log(dbExists);
-                if (!dbExists){
-                     loadRestaurants();
-                     loadUsers();
-                     loadReviews();
-                }
-         });
+            // await checkDatabase().then( (dbExists) => {
+            //  console.log(dbExists);
+            //     if (!dbExists){
+                     await loadRestaurants();
+                     await loadUsers();
+                     await loadReviews();
+                // }
+        //  });
             
         } catch (err) {
             console.log('Connection to MongoDB failed:');
