@@ -1,0 +1,86 @@
+
+<div id="editRestaurantModal" class="editModal">
+    <span class="close-button" onclick="closeEditRestaurantPopup()">&times;</span>
+    <span id="editheader">Edit Restaurant Details</span>
+
+    <!--TODO: fix action -->
+    <form id="editRestoForm" action="/edit-restaurant"  method="POST">
+    
+        <div class="upper-part">
+            <div class="left-side">
+                <div class="input-group">
+                    <label for="restoName" class="editlabel">Name of Establishment:</label>
+                    <input type="text" id="restoName" name="restoName" value="{{restaurant.name}}" class="styled-input">
+                </div>
+                <div class="input-group">
+                    <label for="address" class="editlabel">Address:</label>
+                    <input type="text" id="address" name="address" value="{{restaurant.location}}" class="styled-input">
+                </div>
+                
+                <div class="input-group">
+                    <label for="pricePoint" class="editlabel">Price Point:</label>
+                    <select id="pricePoint" name="pricePoint" class="styled-input">
+                        <option value="Affordable" {{#if (eq restaurant.pricePoint "Affordable")}}selected{{/if}}>Affordable</option>
+                        <option value="Moderate" {{#if (eq restaurant.pricePoint "Moderate")}}selected{{/if}}>Moderate</option>
+                        <option value="Expensive" {{#if (eq restaurant.pricePoint "Expensive")}}selected{{/if}}>Expensive</option>
+                    </select>
+                </div>
+            </div>
+            <div >
+                <div class="input-group" id="tag-checkbox"><label for="tags" class="editlabel">Tags:</label></div>
+
+            <div class="bottom-wrapper">
+                <div class="attributesedit">
+                    
+                    <!--AUTO CHECK TAGS-->
+                    <div class="firstbatchattri">
+                            <div class="feature">
+                                <input type="checkbox" id="isGelato" name="isGelato" {{#if isGelato}}checked{{/if}}> Gelato
+                            </div>
+                            <div class="feature">
+                                <input type="checkbox" id="isFrozenYogurt" name="isFrozenYogurt" {{#if isFrozenYogurt}}checked{{/if}}> Frozen Yogurt
+                            </div>
+                            <div class="feature">
+                                <input type="checkbox" id="isChocolate" name="isChocolate" {{#if isChocolate}}checked{{/if}}> Chocolate
+                            </div>
+                        {{!-- </div>
+
+                        <div class="secondbatchattri"> --}}
+                            <div class="feature">
+                                <input type="checkbox" id="isVegan" name="isVegan" {{#if isVegan}}checked{{/if}}> Vegan
+                            </div>
+                            <div class="feature">
+                                <input type="checkbox" id="isPremium" name="isPremium" {{#if isPremium}}checked{{/if}}> Premium
+                            </div>
+                            <div class="feature">
+                                <input type="checkbox" id="is4Kids" name="is4Kids" {{#if is4Kids}}checked{{/if}}> 4 Kids
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>                    
+        
+        <div>
+            <div class ="shotdesc-coord">
+            <div class="shortdescription">
+                <label for="shortdesc" class="editlabel" id="shortdesclabel">Short Description:</label>
+                <textarea id="shortdesc" name="shortdesc">{{{restaurant.shortDescription}}}</textarea>
+            </div>
+
+            </div>
+
+            <div class="descriptionedit">
+                <label for="desc" class="editlabel" id ="desclabel"> Description:</label>
+                <textarea id="desc" name="desc">{{{restaurant.description}}}</textarea>
+            </div>
+            <div class="buttons-area">
+                <button class ="styled-input deleteButton" id="deleteRestoButton" style="cursor:pointer" >Delete Restaurant</button>
+                <button type="submit" class ="styled-input saveeditbutton" id="saveeditbutton" style="cursor:pointer">Save Changes</button>
+            </div>
+        </div>
+        
+        
+    </form>
+
+</div>

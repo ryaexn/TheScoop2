@@ -1,0 +1,166 @@
+[{
+  "_id":"668dc2fe979404ae8bf8f64c",
+  "name": "Rocky Mountain: Chocolate Factory",
+  "location": "Mid-Level 2/3, East Wing, Shangri-la Plaza, Mandaluyong",
+  "media": [
+    "rocky-mountain-square.jpg",
+    "rocky-mountain2.jpg",
+    "rocky-mountain3.png"
+  ],
+  "username": "rockymountain23",
+  "password": "chocoSundae",
+  "pricePoint": "Affordable",
+  "description": "Indulge in the decadent delight of Rocky Mountain Chocolate Ice Cream, a heavenly blend of rich chocolate flavors and creamy goodness. With each spoonful, you're transported to a world of chocolatey bliss, where velvety smoothness meets the satisfying crunch of chocolate chunks scattered throughout. Rocky Mountain Chocolate Factory, Inc. (dba “Rocky Mountain Chocolate”) is an international franchiser of premium chocolate and confection stores, and a producer of an extensive line of premium chocolates and other confectionery products, including gourmet caramel apples. Rocky Mountain Chocolate was named one of America’s Best on Newsweek's list of 'America's Best Retailers 2023' in the chocolate and candy stores category.",
+  "shortDescription": "Our recipes treasure the delicate balance of silky chocolate and milk, delivering comfort in every piece. It's a classic pleasure reimagined.",
+  "tag": [
+    "Chocolate",
+    "Premium"
+  ],
+  "rating": 4.5,
+  "numberOfReviews": 2,
+  "noOfFiveStars": 1,
+  "noOfFourStars": 1,
+  "noOfThreeStars": 0,
+  "noOfTwoStars": 0,
+  "noOfOneStars": 0,
+  "reviews": ["668dca7b979404ae8bf8f65b", "668dca7b979404ae8bf8f65c"],
+  "createdAt": "2024-07-10T07:39:47.861Z"
+},
+{
+  "_id": "668dc2fe979404ae8bf8f64d"
+  ,
+  "name": "Gelatissimo",
+  "location": "Ground Floor Serendra Piazza, 11th Ave, Taguig",
+  "media": [
+    
+    "gelatissimo-2.jpg", "gelatissimo-1.png",
+    "gelatissimo-3.jpg"
+  ],
+  "username": "gelatissimobgc",
+  "password": "nofatnosugarvanilla",
+  "pricePoint": "Moderate",
+  "description": "Through the dedication and perseverance of its staff and managing directors, Gelatissimo has been well-received by the Philippine market. Its emphasis on artisan gelato made fresh in-store daily provides them with a competitive edge. Gelatissimo offers 32 flavors of its freshest low-fat gelato (90-99.9% fat-free), allowing for limitless flavor combinations. Not only has this sweet treat tantalized the taste buds of many Filipinos, but the entire concept brings a slice of Italy to its customers.We are all about creating an authentic, family-friendly experience that brings smiles to people's faces, and it all begins with our delicious gelato.",
+  "shortDescription": "Fresh, artisanal, delicious. Every day our artisan gelato makers are churning freshly made gelato in store with only the best ingredients, with no artificial colors or flavors.",
+  "tag": [
+    "Gelato"
+  ],
+  "rating": 5,
+  "numberOfReviews": 1,
+  "noOfFiveStars": 1,
+  "noOfFourStars": 0,
+  "noOfThreeStars": 0,
+  "noOfTwoStars": 0,
+  "noOfOneStars": 0,
+  "reviews": ["668dca7b979404ae8bf8f65d"],
+  "createdAt": "2024-07-11T07:39:47.861Z"
+},
+{
+  "_id": "668dc2fe979404ae8bf8f64e"
+  ,
+  "name": "Farmacy Ice Cream & Soda Fountain",
+  "location": "Ground Floor, Six/Neo 4th Avenue, corner 26th St, Taguig",
+  "media": [
+    "farmacy1.png",
+    "farmacy2.jpg",
+    "farmacy3.png"
+  ],
+  "username": "wildflourfarmacy",
+  "password": "farmasheesh",
+  "pricePoint": "Expensive",
+  "description": "Harkening back to the classic turn-of-the-century ice cream parlors and soda fountains, Farmacy Ice Cream & Soda Fountain opened its doors in 2014 right beside the original branch of mother brand Wildflour in BGC, and has since been a favorite of sweet tooths around the Metro clamoring for ice cream made and served the right way. With fresh homemade ice cream, milkshakes, sodas, coffee and pastries offering tons of succulent original flavors (including the alcoholic kind) and a refreshing timeless ambiance, Farmacy won’t be able to cure disease, but it should be your go-to place to unwind, heal and soothe your weary soul.",
+  "shortDescription": "Savoring fresh homemade ice cream and milkshakes at Farmacy, you'll find a variety of original flavors and a refreshing, timeless ambiance, making it your go-to place to unwind, heal, and soothe your weary soul.",
+  "tag": [
+    "Premium"
+  ],
+  "rating": 2,
+  "numberOfReviews": 1,
+  "noOfFiveStars": 0,
+  "noOfFourStars": 1,
+  "noOfThreeStars": 0,
+  "noOfTwoStars": 0,
+  "noOfOneStars": 0,
+  "reviews": ["668dca7b979404ae8bf8f65f"],
+  "createdAt": "2024-07-11T07:39:47.861Z"
+},
+{
+  "_id": "668dc2fe979404ae8bf8f64f",
+  "name": "Red Mango",
+  "location": "Promenade Greenhills, Ortigas Ave Connecticut, San Juan",
+  "media": [
+    "red-mango1.png",
+    "red-mango2.jpg",
+    "red-mango3.png"
+  ],
+  "username": "redmangoGH",
+  "password": "nonfatyogurt",
+  "pricePoint": "Moderate",
+  "description": "Originated in 2002 in South Korea, Red Mango is recognized as the pioneer of the tart variety of nonfat frozen yogurt. Red Mango has now grown to over 150 stores worldwide, with stores in the USA, South Africa, Singapore, Indonesia, Thailand and the Philippines. Red Mango’s frozen yogurt is authentic, all-natural nonfat frozen yogurt that has all of yogurt’s natural goodness, such as calcium, protein and live and active cultures that are good for your body. It contains no artificial ingredients, and is 100% nonfat.Whether Original or Green Tea, Red Mango frozen yogurt promotes good health, making it an extremely satisfying dessert you can eat every morning, day or night.",
+  "shortDescription": "At Red Mango, we combine our refreshingly tangy frozen yogurt with fresh and exciting toppings to create a nutritious dessert that can be enjoyed any time of the day.",
+  "tag": [
+    "Frozen Yogurt"
+  ],
+  "rating": 4,
+  "numberOfReviews": 1,
+  "noOfFiveStars": 0,
+  "noOfFourStars": 1,
+  "noOfThreeStars": 0,
+  "noOfTwoStars": 0,
+  "noOfOneStars": 0,
+  "reviews": ["668dca7b979404ae8bf8f65e"],
+  "createdAt": "2024-07-11T07:39:47.861Z"
+},
+{
+  "_id": "668dc2fe979404ae8bf8f650",
+  "name": "a mano",
+  "location": "R1 Level Stall 144, Power Plant Mall, Rockwell Center, Makati",
+  "media": [
+    "amano1.png",
+    "amano2.jpg",
+    "amano3.png"
+  ],
+  "username": "amanorockwell",
+  "password": "amanobyamano",
+  "pricePoint": "Expensive",
+  "description": "A Mano is a celebrated Italian restaurant renowned for its authentic flavors and rustic charm. Nestled in the heart of the city, it captivates diners with its handcrafted pasta dishes and artisanal pizzas baked to perfection in a wood-fired oven. The menu showcases seasonal ingredients sourced locally and imported from Italy, ensuring each dish embodies the essence of Italian culinary tradition. With a warm and inviting atmosphere, A Mano offers a culinary journey that transports guests to the heart of Italy, making it a beloved destination for both locals and visitors alike.",
+  "shortDescription": "Discover the exquisite taste of Amano's Burrata Gelato and elevate your dessert experience. Amano, the Italian shop in the Philippines, invites you to experience the unique and luxurious taste of their Burrata Gelato. ",
+  "tag": [
+    "Gelato",
+    "Premium"
+  ],
+  "rating": 0,
+  "numberOfReviews": 0,
+  "noOfFiveStars": 0,
+  "noOfFourStars": 0,
+  "noOfThreeStars": 0,
+  "noOfTwoStars": 0,
+  "noOfOneStars": 0,
+  "reviews": [],
+  "createdAt": "2024-07-11T07:39:47.861Z"
+},
+{
+  "_id": "668dc2fe979404ae8bf8f651",
+  "name": "Cold Stone",
+  "location": "Ground Floor, Serendra Retail Area, Bonifacio Global, Taguig City",
+  "media": [
+    "coldstone1.png",
+    "coldstone2.png",
+    "coldstone3.png"
+  ],
+  "username": "coldstoneBGC",
+  "password": "12345678",
+  "pricePoint": "Affordable",
+  "description": "Beyond its delectable treats, Cold Stone Creamery is celebrated for its lively and interactive atmosphere, where guests can watch their ice cream being crafted with precision and creativity. The experience is as much about the process as it is about the product, with each visit promising a joyful celebration of flavors and textures. Whether you're indulging in a signature Creation like the 'Founder's Favorite' or opting for a custom creation of your own, Cold Stone Creamery offers a delightful escape into a world of sweet sensations, making it a cherished destination for families, friends, and ice cream aficionados alike.",
+  "shortDescription": "For more than 30 years we’ve served up the finest, freshest ice cream, cakes, smoothies and shakes using only the highest quality ingredients, and of course, our signature process of preparing your custom ice cream creation on a frozen granite stone.",
+  "tag": [
+    "4 Kids"
+  ],
+  "rating": 0,
+  "numberOfReviews": 0,
+  "noOfFiveStars": 0,
+  "noOfFourStars": 0,
+  "noOfThreeStars": 0,
+  "noOfTwoStars": 0,
+  "noOfOneStars": 0,
+  "reviews": [],
+  "createdAt": "2024-07-11T07:39:47.861Z"
+}]

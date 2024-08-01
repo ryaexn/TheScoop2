@@ -1,0 +1,35 @@
+<section id="latest-reviews">
+            <div class="section-header-area">
+                <span class="section-title" id=top-establishments-title><h1>Fresh n' Frosty Feedbacks &#x2744;
+                </h1></span>
+                <span class="more-btn"><a href="#"> more <img src="assets/symbols/arrow-forward.png"></a></span>
+            </div>
+            <hr class="gradient-blue-hr">
+            
+            <div class="reviews-wrapper">
+                <div class="reviews-column">
+
+                {{#each latestReviews}}
+                    <div class="mini-review hero-review">
+                        <div class="user-area">
+                            <div class="user-icon"><a href="/view-user-profile/{{this.username}}"><img src="assets/icons/{{userIcon}}"></a></div>
+                        </div>
+                        <div class="text-area">
+                            <p>{{fullNameOfUser}} rated {{restoName}} {{rating}} out of 5 cones!</p>
+                            <p class="comment" style="padding-top:5px">{{{title}}}</p>
+                            <br>
+                        {{#if isHelpful}}
+                            <p class="helpful-tag"><img src="assets/symbols/lightbulb.png"> {{helpfulMarks}} people found this helpful.</p>
+                        {{/if}}
+                        </div>
+                        <span class="view-review"><a href="view-restaurant/{{restoId}}#review{{_id}}"><img src="assets/symbols/arrow-forward.png"></a></span>
+                    </div>
+
+                {{#ifEquals index 1}} {{!-- Start new column --}}
+                </div> {{!--Close current column --}}
+                <div class="reviews-column">
+                {{/ifEquals}}
+                {{/each}}
+                </div>
+            </div>
+</section>

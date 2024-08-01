@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>The Scoop</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="icon" type="image/x-icon" href="/assets/logo.png">
+        
+        <link rel="stylesheet" href="styles/base.css">
+        <link rel="stylesheet" href="styles/landing.css">
+        <link rel="stylesheet" href="styles/view-establishments.css">
+        <link rel="stylesheet" href="styles/view-resto.css">
+        <link rel="stylesheet" href="styles/edit-resto.css">
+        <link rel="stylesheet" href="styles/edit-resto-modal.css">
+
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <script src="scripts/like-review.js"></script>
+        <script src="scripts/edit-resto.js"></script>
+        <script src="scripts/cone-slider.js"></script>
+        <script src="scripts/sweetalert.js"></script>
+
+        <!--SWAL-->
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    </head>
+
+    <body>
+        {{> header}}
+        {{> bluebanner}}        
+    
+            <!-- GALLERY AREA-->
+            <div class="gallery">
+               
+                <div class="gallery-slot">
+                    {{#if isOwnerLoggedIn}} <div class="edit-gallery-btn" id="button1"><button onclick="editImage(0)">Change Picture</button></div> {{/if}}
+                    <img id= "resto-image-1" class=gallery-image src="/assets/{{media.[0]}}">
+                </div>
+                <div class="gallery-slot">
+                    {{#if isOwnerLoggedIn}} <div class="edit-gallery-btn" id="button2"><button onclick="editImage(1)">Change Picture</button></div> {{/if}}
+                    <img id= "resto-image-2" class=gallery-image src="/assets/{{media.[1]}}">
+                </div>
+                
+                <div class="gallery-slot">
+                    {{#if isOwnerLoggedIn}} <div class="edit-gallery-btn" id="button3"><button onclick="editImage(2)">Change Picture</button></div>{{/if}}
+                    <img id= "resto-image-2"class=gallery-image src="assets/{{media.[2]}}">
+                </div>
+            </div>
+
+            <!-- EDIT GALLERY -->
+            
+            <!-- OVERLAY -->
+            {{> overlay}}
+
+            <!-- ESTABLISHMENT DETAILS-->
+            <div class="establishment-info">
+                <div id="establishment-info-wrapper" class="hero-content">
+                    <div class="hero-info">
+                        
+                        <a id="hero-title" href="javascript:void(0)"><h1>{{name}}</h1></a>
+                        
+                        <p>&#x1f4cc; &nbsp; {{location}}</p>
+                        <p>&#x1f366; &nbsp; RATING: {{rating}}/5 <span> ({{numberOfReviews}} Reviews)</span> </p>
+                        <p>&#x1f4b5; &nbsp; PRICE POINT: {{pricePoint}}</p>
+                        
+                        <br>
+                        <p id="establishment-shortdesc">
+                            {{shortDescription}}
+                        </p>
+                        <p id="establishment-desc" class="hero-desc">
+                            {{description}}
+                        </p>
+                        
+                        <!-- RESTO TAGS AREA-->
+                        <p class="hero-author"> Filed under: </p>
+                        <div class="tags-area">
+                            {{#each tag}}
+                            <span class="resto-tag" style="text-transform:uppercase">{{this}}</span>    
+                            {{/each}}
+                        </div>
+                    </div>
+                    
+                    <!--EDIT-->
+                    <!--EDIT BUTTON TODO: SCRIPT-->
+                    {{> edit-resto-modal}}
+                </div>
+            </div>
+        </div>
+        
+        <section id="latest-reviews">
+            <div class="section-header-area">
+                <span class="section-title" id="top-establishments-title"><h1>Reviews</h1><span class="more-btn"></span></span>
+                <span class="more-btn">share your thoughts with others!</span>
+            </div>
+
+            <hr class="gradient-red-hr">
+            <div style="margin-top: 2px; color: rgb(133, 125, 125)">sorted by most recent.</div>
+
+            <div class="reviews-wrapper">
+
+                <!--TODO: MAKE DYNAMIC-->
+                <div class="reviews-column" >
+
+                    <!-- REVIEW TEMPLATE -->
+                    <div class="mini-review">
+
+                        <div class="user-area-wrapper">
+                            <div class="user-area">
+                                <div class="user-icon"><a href="#"><img src="assets/icons/female-icon.png"></a></div>
+                            </div>
+                            <p class="user-name"> Cheeno Ortiz</p>
+                            <span class="user-rating">
+                                <span class="cone green"> 5🍦</span>
+                            </span>
+                        </div>
+                    
+                        <div class="text-area">
+                        
+                            <p class="title"><h3>The Chocolate Dessert You'll Want to Have All Summer!</h3></p>
+                            <p class="comment">Love love love! It's so sarap, it's so yummy, I love their Chocolate Ice Cream! &#129655;
+                                It makes me feel like there's something in this world!
+                            </p>
+                            <br>
+
+                            <img class="review-img" src="/assets/review1.png">
+                            <br>
+                        </div>
+
+                        <div class="review-buttons-area uncenter">
+                            <span id="edit-review-btn" onclick="editReviewDetails()" class="close-button"><img src="assets/symbols/edit-pencil.png"></span>
+                            <span id="delete-review-btn" class="close-button"> <img src="assets/symbols/delete-symbol.png"></span>
+                        </div>
+
+                    </div>
+
+                    <div class="mini-review">
+                        <div class="user-area-wrapper">
+                            <div class="user-area">
+                            <div class="user-icon"><img src="assets/icons/female-icon.png"></div>
+                            </div>
+                            <p class="user-name"> Chimchar So</p>
+                            <span class="user-rating">
+                                <span class="cone"> 2🍦</span>
+                            </span>
+                        </div>
+                        
+                        <div class="text-area">
+                            <p class="title"><h3>Overrated. Something only children will like.</h3></p>
+                            <p class="comment">It's whatever. It's definitely for kids, alright.</p>
+
+                            <br>
+                            <br>
+                            <p class="helpful-count-text"><img src="/assets/symbols/lightbulb.png"> 2 people found this helpful.</p>
+
+                        </div>
+                        <div class="review-buttons-area">
+                            <!-- HELPFUL BUTTON: injects helpful stmt -->
+                        <span class="view-review helpful-btn" ><a style="cursor:pointer"><img src="/assets/symbols/lightbulb.png" onclick="toggleHelpful(this)"></a></span>
+                        </div>
+                        
+                    </div>
+
+                    {{#if isLoggedIn}}
+                    <!-- NEW REVIEW AREA--> 
+                    <!-- TODO: MAKE THIS A FORM-->
+                    <div class="mini-review">
+
+                        <div class="user-area-wrapper">
+                            <div class="user-area">
+                                <div class="user-icon"><img src="assets/icons/female-icon.png"></div>
+                            </div>
+                            <p class="user-name">Cheeno Ortiz</p>
+                        </div>
+
+                        <div class="text-area">
+                            <div id="rating-slider" class="rating-input"><b>Rating:</b>
+                                <div id="cone1" class="slider-cone">🍦</div>
+                                <div id="cone2" class="slider-cone">🍦</div>
+                                <div id="cone3" class="slider-cone">🍦</div>
+                                <div id="cone4" class="slider-cone">🍦</div>
+                                <div id="cone5" class="slider-cone">🍦</div>
+                            </div>
+                            <textarea id="newreview-title" rows="1" cols="20" placeholder= "Title *"></textarea>
+                            <textarea id="newreview-desc" rows="4" cols="20" placeholder="Share more of your thoughts!"></textarea>
+                            
+                            <br> 
+                            <div id="upload-area" onclick="editImage(0)"><img src="/assets/symbols/upload-symbol.png"> Upload a photo</div>
+                        </div>
+                            
+                        <!--TODO: FIX ONCLICK-->
+                        <span class="view-review"><button id="submit-review-btn"><img src="/assets/symbols/checkmark.png"></button></span>
+                    </div>
+                    {{/if}}
+                </div>
+            </div>
+        </section>
+        {{>edit-review-modal}}
+        {{> footer}}
+    </body>
+</html>

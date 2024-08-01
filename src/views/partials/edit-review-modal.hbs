@@ -1,0 +1,66 @@
+<!--EDIT REVIEW OVERLAY-->
+<div id="editReviewModal" class="editModal editReviewModal"> 
+    <div id="editReviewModalWrapper">
+        <span id="" class="close-button" onclick="closeEditReviewPopup()" style="top:0px; right:10px; font-size:1.5rem">&times;</span>
+        <span id="editheader">Edit Review Details</span>
+    <meta charset="UTF-8">
+    
+    <form id="editReviewForm" method="POST" enctype="multipart/form-data">
+        <style>
+            .slider-cone{
+                opacity: 50%;
+            } 
+
+            .slider-cone.checked{
+                opacity: 100%;
+            }
+            .body-edit{
+                display: flex;
+                flex-direction: column;
+                padding:0;
+                
+            }
+
+            #review-image{
+                display: none; 
+                margin-top: 1rem;
+                
+                height: 200px;
+                box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+            }
+        </style>
+         
+        <div id="rating-slider" class="rating-input center-this"><b>Rating:</b>
+            <div id="edit-cone1" class="slider-cone">🍦</div>
+            <div id="edit-cone2" class="slider-cone">🍦</div>
+            <div id="edit-cone3" class="slider-cone">🍦</div>
+            <div id="edit-cone4" class="slider-cone">🍦</div>
+            <div id="edit-cone5" class="slider-cone">🍦</div>
+        </div>
+            <input type="number" hidden id="newreview-rating" name="rating" value="0">
+            <input id="review-id" hidden name="reviewId">
+
+            <label for="restoName" class="editlabel">Title</label>
+            <textarea id="edit-rev-title" name="title" rows="1" cols="110" required></textarea>
+                     
+        <div class="body-edit">
+            <label for="desc" class="editlabel" id ="desclabel"> Description</label>
+            <textarea  id="edit-review-desc" name="description" rows="3" required></textarea>
+        </div>
+
+
+        <!-- INJECT PHOTO HERE-->
+        <div id="image-area">
+            <img id="review-image" src=""> 
+        </div>
+        
+
+        <div id="edit-review-button-area">
+            <span class ="edit-modal-button" id="delete-review">Delete</span>
+            <span class ="edit-modal-button" id="change-pic-review" onclick="changeReviewPhoto()">Upload a photo</span>
+            <span type="submit" class ="edit-modal-button" id="save-review-btn">Save Changes</span>
+        </div>
+    </form>
+    </div>
+    
+</div>

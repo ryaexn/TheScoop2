@@ -1,0 +1,256 @@
+.edit-gallery-btn{
+    position: absolute;
+    top: 65%;
+}
+
+#button0{
+    left: 10vw;
+}
+
+#button1{
+    left: 45vw;
+}
+
+#button2{
+    right: 10vw;
+}
+
+
+.edit-gallery-btn button{
+    font-size: 1rem;
+    text-transform: uppercase;
+    border: solid black 2px !important;
+}
+
+.edit-gallery-btn button:hover{
+    cursor: pointer;
+    
+}
+
+.edit-gallery-btn img {
+    width: 30px;
+    padding:0;
+}
+
+.hero-author{
+    padding:0
+}
+
+
+/* Restaurant Tags */
+.tags-area{
+    display:flex;
+    gap:20px
+}
+.resto-tag{
+    margin-block: 2%;
+    box-shadow: 5px 5px #1b4d7a ;
+    padding-inline: 3px;
+    width:fit-content;
+    display: flex;
+    flex-flow: row wrap;
+    align-items: center;
+    border: solid black 1px;
+    background-color:#ffd12f;
+
+    transition: transform .2s;
+}
+
+.resto-tag:hover{
+    transform: scale(1.25);
+}
+
+#edit-resto-btn{
+    border: solid black 2px;
+}
+
+#delete-review-btn{
+    position: static;
+    color: white;
+    font-size: 2rem;
+    padding: 4px;
+    border: solid black 1px;
+    background-color: #ba1a1a;
+    line-height: 1.75rem;
+}
+
+
+#delete-review-btn img, #edit-review-btn img{
+    width: 26px;
+    height: 26px;
+}
+
+#edit-review-btn{
+    position: static;
+    color: white;
+    font-size: 2rem;
+    padding: 4px;
+    border: solid black 1px;
+    background-color: white;
+    line-height: 1.75rem;
+}
+
+.reviews-column{
+    gap: 1rem;
+}
+
+
+.review-buttons-area{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1em;
+    /* transform: translateY(3rem); */
+}
+
+.uncenter{
+    justify-content: left;
+    align-items: baseline;
+}
+
+.helpful-count-text {
+    display: flex;
+    align-items: center;
+    font: 1rem;
+    color: green;
+    margin-bottom: 3px;
+}
+
+#editReviewModal {
+    height: 420px;
+    width: 600px;
+}
+
+
+#edit-rev-title {
+    width: 100%;
+}
+
+.center-this{
+    display:flex;
+    justify-content: center;
+}
+
+#edit-cone1, #edit-cone2, #edit-cone3, #edit-cone4, #edit-cone5{
+    font-size: 1.75rem;
+}
+
+
+
+.mini-review{
+    align-items: stretch;
+    margin-top: 0.5rem;
+}
+
+.user-area-wrapper{
+   
+}
+
+
+
+.text-area {
+    justify-content: center;
+}
+
+.user-area{
+    display:flex;
+}
+
+.cone {
+    font-weight: normal;
+}
+
+.view-review.helpful-btn.reply-btn{
+    display: flex;
+    align-items: center;
+    width: fit-content;
+    padding-top: 5px;
+}
+
+.view-review.helpful-btn.reply-btn img{
+    width: 25px;
+    aspect-ratio: 1;
+}
+
+.owner-reply-modal{
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding:35px;
+
+    background-color: #eaf1f5;
+    z-index: 1000;
+    border: 1px solid #ccc;
+    border-radius: 20px;
+    width: 600px;
+    background-image: url('../assets/sprinkles.png');
+    background-repeat: no-repeat;
+    background-position: 80% 20%;
+    /* height: 500px; */
+}
+
+.reply-header{
+    font-size: 34px;
+    font-weight: bold;
+    font-family: 'Space Grotesk', sans-serif;
+}
+
+.owner-reply-modal-wrapper{
+    display:flex;
+    flex-direction: column;
+    margin-top: 1rem;
+    margin-bottom: 0.5rem;
+}
+
+#input-reply-message{
+    font-family: 'Lexend', sans-serif;
+    font-size: 1rem;
+    margin-top:5px;
+    width: 100%;
+    padding: 10px 10px;
+    outline: none;
+    border: 1px solid #aaa;
+}
+
+#submit-reply-btn:hover{
+    background-color: rgb(5, 89, 5, 0.7);
+}
+
+
+.photo-comment-area{
+    display:flex;
+    flex-direction: row;
+    height:max-content;
+    width: 100%;
+    gap: 1.5rem;
+}
+
+.owner-comment{
+    height: 120px;
+    padding: 0.75rem;
+    background-color: rgba(255, 255, 255, 0.814);
+    border-radius: 1rem;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    
+    margin-bottom: 1rem;
+}
+
+.comment-header{
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+    font-weight: 550;
+    font-size: 1rem;
+    
+}
+
+.comment-body{
+    padding: 4px;
+    font-size: 0.95rem;
+    color: #1b4d7a;
+    text-align: justify;
+}
+

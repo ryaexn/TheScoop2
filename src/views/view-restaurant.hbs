@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>The Scoop</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="icon" type="image/x-icon" href="/assets/logo.png">
+        
+        <link rel="stylesheet" href="/styles/base.css">
+        <link rel="stylesheet" href="/styles/landing.css">
+        <link rel="stylesheet" href="/styles/view-establishments.css">
+        <link rel="stylesheet" href="/styles/view-resto.css">
+        <link rel="stylesheet" href="/styles/edit-resto.css">
+        <link rel="stylesheet" href="/styles/edit-resto-modal.css">
+
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <script src="/scripts/swal-base.js"></script>
+        <script src="/scripts/login.js"></script>
+        <script src="/scripts/search-popup.js" defer></script>
+
+        <script src="/scripts/review-interact.js"></script>
+        <script src="/scripts/edit-resto.js"></script>
+        <script src="/scripts/cone-slider.js"></script>
+        <script src="/scripts/sweetalert.js"></script>
+        <script src="/scripts/toggle-gallery.js"></script>
+        
+        <!--SWAL-->
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    </head>
+
+    <body>
+        {{> header}}
+        {{> bluebanner}}        
+    
+            <!-- GALLERY AREA-->
+            <div class="gallery">
+                <div class="gallery-slot">
+                    {{#if hasEditAccess}} <div class="edit-gallery-btn" id="button0"><button class="button-74 white" onclick="editRestoImage(0)">Change Picture</button></div> {{/if}}
+                    <img id= "resto-image-0" class="gallery-image" src="/assets/{{restaurant.media.[0]}}">
+                </div>
+                <div class="gallery-slot">
+                    {{#if hasEditAccess}} <div class="edit-gallery-btn" id="button1"><button class="button-74 white" onclick="editRestoImage(1)">Change Picture</button></div> {{/if}}
+                    <img id= "resto-image-1" class="gallery-image" src="/assets/{{restaurant.media.[1]}}">
+                </div>
+                
+                <div class="gallery-slot">
+                    {{#if hasEditAccess}} <div class="edit-gallery-btn" id="button2"><button class="button-74 white" onclick="editRestoImage(2)">Change Picture</button></div>{{/if}}
+                    <img id= "resto-image-2" class="gallery-image" src="/assets/{{restaurant.media.[2]}}">
+                </div>
+            </div>
+
+            <!-- EDIT GALLERY -->
+            
+            <!-- OVERLAY FOR EDIT RESTO-->
+            {{> overlay}}
+
+            <!-- ESTABLISHMENT DETAILS-->
+            <div class="establishment-info">
+                <div id="establishment-info-wrapper" class="hero-content">
+                    <div id="establishment-information" class="hero-info{{#unless hasEditAccess}} formatted-info{{/unless}} ">
+                        
+                        <div id="hero-title">
+                            <h1>{{restaurant.name}}</h1>
+                            {{#unless hasEditAccess}}
+                            <button id="toggle-gallery" class="button-74" role="button">Show gallery</button>
+                            {{/unless}}
+
+                            {{#if hasEditAccess}}
+                            <button id="edit-resto-btn" class="button-74" role="button" onclick="editRestoDetails()">Edit details</button>
+                            {{!-- <button id="edit-resto-btn" onclick="editRestoDetails()">Edit Details</button> --}}
+                            {{/if}}
+                        </div>
+
+                        <p>&#x1f4cc; &nbsp; {{restaurant.location}}</p>
+                        <p>&#x1f366; &nbsp; RATING: {{restaurant.rating}}/5 <span> ({{restaurant.numberOfReviews}} Reviews)</span> </p>
+                        <p>&#x1f4b5; &nbsp; PRICE POINT: {{restaurant.pricePoint}}</p>
+                        
+                        <br>
+                        <p id="establishment-shortdesc">
+                            {{restaurant.shortDescription}}
+                        </p>
+                        <p id="establishment-desc" class="hero-desc">
+                            {{restaurant.description}}
+                        </p>
+
+                        <!-- RESTO TAGS AREA-->
+                        <p class="hero-author"> Filed under: </p>
+                        <div class="tags-area">
+                            {{#each restaurant.tag}}
+                            <span class="resto-tag" style="text-transform:uppercase; cursor:pointer" onclick=window.location.href="/view-restaurants?category={{this}}">{{this}}</span>    
+                            {{/each}}
+                        </div>
+                    </div>
+                    
+                    <!--EDIT-->
+                    <!--EDIT BUTTON TODO: SCRIPT-->
+                    {{> edit-resto-modal}}
+                </div>
+            </div>
+        </div>
+        
+        <div id="replyModal" class="owner-reply-modal" >
+            <form id="replyForm" action="/process-review-reply" method="POST">
+                <span class="reply-header">Reply to user</span>
+
+                <div class="owner-reply-modal-wrapper">
+                    <label id="label-reply" for="input-reply-message">Message</label>
+                    <textarea type="text" id="input-reply-message" name="replyMessage" rows="4"></textarea>
+                </div>
+               
+                <div class="buttons-area">
+                    <button id="cancel-reply-btn" class="deleteButton" onclick="closeReply(event)">Cancel</button>
+                    <button id="submit-reply-btn" class="saveeditbutton" rows="10">Reply</button>
+                </div>
+
+            </form>
+            
+        </div>
+
+        <section id="latest-reviews">
+            <div class="section-header-area">
+                <span class="section-title" id="top-establishments-title"><h1>Reviews</h1><span class="more-btn"></span></span>
+                <span class="more-btn">share your thoughts with others!</span>
+            </div>
+
+            <hr class="gradient-red-hr">
+            <div style="margin-top: 2px; color: rgb(133, 125, 125)">sorted by most recent.</div>
+
+            {{#unless restaurant.numberOfReviews}}
+            <div id="noReviewsMessage">
+                No reviews yet &#x1F494;
+            </div>
+            <br>
+            <hr>
+            {{/unless}}
+
+            <div class="reviews-wrapper">
+            
+                <div class="reviews-column">       
+                    {{#each reviews}}
+                    <div class="mini-review" id="review{{_id}}">
+                        <div class="user-area-wrapper">
+                            <div class="user-area">
+                                <div class="user-icon"><a href="/view-user-profile/{{this.username}}"><img src="/assets/icons/{{authorImage}}"></a></div>
+                            </div>
+                            <p class="user-name">{{fullName}}</p>
+                            {{#ifGreaterThan rating 2}}
+                            <span class="cone green"> {{rating}}🍦</span> 
+                            {{else}}
+                            <span class="cone">{{rating}}🍦</span>
+                            {{/ifGreaterThan}}
+                        </div>
+
+                        <div class="text-area">
+                            <div>
+                                
+                                <h3 class="title">{{{title}}}</h3>
+                                <p class="body">{{{body}}}</p>
+                                <br>
+                                <div class="photo-comment-area">
+                                {{#if media}}
+                                <img class="review-img" src="/assets/reviews/{{media}}">
+                                {{/if}}
+
+                                {{#if reply}}
+                                <div class="owner-comment">
+                                    <p class="comment-header"><img src="/assets/symbols/checkmark.svg" style="width:1.3rem"> {{restoName}}</p>
+                                    
+                                    <p class="comment-body"> {{reply}}</p>
+                                </div>
+                                {{/if}}
+                                </div>
+                            </div>
+                        
+                            <div>
+                                <span class="review-date"><img src="/assets/symbols/edit-pencil.png"> {{formatDate createdAt}} </span>
+                                {{#ifGreaterThan helpfulMarks 0}}
+                                <p class="helpful-count-text"><img src="/assets/symbols/lightbulb.png"><span class="like-counter">{{helpfulMarks}}</span>&nbsp;people found this helpful.</p>
+                                {{/ifGreaterThan}}
+                            </div>
+                        </div>
+
+                        {{!-- TODO CHANGE TO REPLY  --}}
+                        {{#if ../isLoggedIn}}
+                            {{#ifEquals ../username username}}
+                            
+                            {{else}}
+                                <div class="review-buttons-area">
+                                <!-- HELPFUL BUTTON: injects helpful stmt -->
+                                {{#if ../hasEditAccess}}
+                                    <span class="view-review helpful-btn reply-btn" ><a style="cursor:pointer"><img src="/assets/symbols/quick-reply.png" onclick="openReply('{{_id}}')"></a></span>
+                                {{/if}}
+                                <span class="view-review helpful-btn" ><a style="cursor:pointer"><img src="/assets/symbols/lightbulb.png" onclick="toggleHelpful(this, '{{_id}}')"></a></span>
+                                </div>
+                            {{/ifEquals}}
+                        {{/if}}
+                        
+                        
+                    </div>
+                    {{/each}} <!-- Close review loop-->
+
+                    {{!-- TODO REPLY MODAL --}}
+
+                    {{#if isLoggedIn}}
+                    <!-- NEW REVIEW AREA--> 
+                    {{#unless isOwnerLoggedIn}}
+                    <form id="newReview" action="/process-review" method="POST" style="width:100%" enctype="multipart/form-data">
+                    <div class="mini-review">
+
+                        <div class="user-area-wrapper">
+                            <div class="user-area">
+                                <div class="user-icon"><img src="/assets/icons/{{userIcon}}"></div>
+                            </div>
+                            <p class="user-name">{{username}}</p>
+                        </div>
+
+                        <div class="text-area">
+        
+                            <input name="newreviewRestaurant" type="hidden" value="{{restaurant._id}}">
+                            <input name="newreviewRating" id="newreview-rating" type="number" style="display:none" required>
+
+                            <div id="rating-slider" class="rating-input"><b>Rating:</b>
+                                <div id="cone1" class="slider-cone">🍦</div>
+                                <div id="cone2" class="slider-cone">🍦</div>
+                                <div id="cone3" class="slider-cone">🍦</div>
+                                <div id="cone4" class="slider-cone">🍦</div>
+                                <div id="cone5" class="slider-cone">🍦</div>
+                            </div>
+
+                            <textarea name= "newreviewTitle" id="newreview-title" rows="1" cols="20" placeholder= "Title *" required></textarea>
+                            <textarea name= "newreviewDesc" id="newreview-desc" rows="8" cols="20" placeholder="Share more of your thoughts!"></textarea>
+                            <br> 
+
+                            
+                            <!--INJECT IMG HERE input image has name: new-review-img -->
+                            <img id="current-image-input" class="review-img" style="display: none">
+
+                            <div style="display:flex ; gap:10px">
+
+                                <div id="upload-area" onclick="openPhotoInput()"><img src="/assets/symbols/upload-symbol.png"> Upload a photo</div>
+                                <button id="submit-review" type="submit"> Publish </button>
+                                <script>
+            
+                                            $(document).ready(function() {
+                                            $('#submit-review').on('click', function() {
+                                                    $('#newReview').submit();
+                                            })})
+                                </script>
+                            </div>
+
+                        </div>
+                            
+                        <!--TODO: FIX ONCLICK-->
+                        
+                    </div>
+                    </form>
+                    {{/unless}}
+                    {{else}}
+                        <hr style="width: 80vw; background-color: rgb(90, 85, 85); border-top:1rem ;">
+                        <a id="login-message" href="#login" onclick="openLoginPopUp()">Log in to be able to leave a review.</a>
+                    {{/if}}
+                </div>
+            </div>
+        </section>
+        {{>edit-review-modal}}
+        {{> footer}}
+    </body>
+</html>

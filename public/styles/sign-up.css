@@ -1,0 +1,193 @@
+body{
+    min-height: 100vh;
+}
+
+content {
+    width: 100%;
+    height: 95vh;
+    
+    overflow: hidden;
+    display: flex;
+}
+
+.content-half {
+    background-image: url('../assets/sprinkles.png');
+    background-repeat: no-repeat;
+    background-position: 100% -10%;
+    width:50%;
+
+    display: flex;
+    justify-content: center;
+    padding-top: 3%;
+
+    align-items: start;
+}
+
+.content-half:first-child{
+    background-image: url('../assets/sprinkles2.png');
+    background-repeat: no-repeat;
+    background-position: 0% 140%;
+   
+}
+
+
+.vertical-bar{
+    background-color: #1b4d7a;
+    border: 1px solid #1b4d7a;
+    gap:0;
+}
+
+.v-text{
+    margin-inline: 1em;
+    font-size: 50;
+    font-weight: 600;
+    color: rgb(248,190,29);
+}
+
+.content-half:first-child{
+    background-color: #fffcec;
+}
+
+.sign-up-container{
+    
+    width: 60%;
+    display: flex;
+    flex-direction: column;
+
+    padding: 2rem 3rem;
+    border: 1px solid black;
+    box-shadow: #1b4d7a 10px 10px;
+}
+
+.title h2, .highlight{
+    font-family:'Space Grotesk', sans-serif;
+    font-size: 2.5rem;
+}
+
+.title .highlight {
+    color:#1b4d7a;
+}
+
+#reviewer-box{
+    background-color: #f4fafd;
+}
+
+#owner-box {
+    background-color: #fffcec;
+    box-shadow: #1b4d7a 10px 10px;
+}
+
+#owner-box h2 {
+    text-align: right;
+    font-size: 1.83rem;
+}
+
+content .form-element input{
+    font-family: 'Lexend',sans-serif;
+    font-size: 1rem;
+    margin-top: 5px;
+    width: 100%;
+    padding: 10px 10px;
+    outline: none;
+    border:1px solid #aaa;
+    margin-block: 0.5em;
+}
+
+#name-input{
+    display: flex;
+    justify-content: space-evenly;
+}
+
+content .form-element button{
+    font-family: 'Lexend',sans-serif;
+    font-size: 1rem;
+    margin-top: 5px;
+    width: 100%;
+    padding: 10px 10px;
+    outline: none;
+    border:1px solid #aaa;
+    margin-block: 0.5em;
+}
+
+content .form-element button{
+    font-family: 'Lexend',sans-serif;
+    font-size: 1rem;
+    margin-top: 5px;
+    width: 100%;
+    padding: 10px 10px;
+    outline: none;
+    border:1px solid #aaa;
+    margin-block: 0.5em;
+}
+
+content form {
+    margin-block: 20px;
+}
+
+content form p {
+    text-align: center;
+    margin: 0.5em 0.25em;
+    font-size: 0.8em;
+    opacity: 0.6;
+}
+
+
+.banner { 
+    background-color: rgb(248,190,29);
+    border-bottom: 1px black solid;
+}
+
+.banner span{
+    color: black;
+}
+
+.banner .bluetext{
+    color:#18436b;
+}
+
+
+
+textarea{
+    width: 100%;
+    font-family: 'Lexend',sans-serif;
+    font-size: 0.9rem;
+    margin-top: 5px;
+    width: 100%;
+    padding: 10px 10px;
+    outline: none;
+    border:1px solid #aaa;
+    margin-block: 0.5em;
+    resize: vertical;
+    min-height: 5rem;
+}
+
+
+#reviewer-submit, #owner-submit{
+    color: black;
+    width: 50%;
+}
+
+#rev-submit-wrapper, #owner-submit-wrapper{
+
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    
+}
+
+
+
+#establishment-variety{
+    font-family: 'Lexend',sans-serif;
+    font-size: 1rem;
+    margin-top: 5px;
+    width: 100%;
+    padding: 10px 10px;
+    outline: none;
+    border:1px solid #aaa;
+    margin-block: 0.5em;
+}
+
+option:first {
+    color: #999;
+}

@@ -1,0 +1,17 @@
+{{#if loginSuccess}}
+<script>
+    showloginSuccessPopup('{{username}}');
+</script>    
+{{/if}}
+
+{{#if loginFailed}}
+    <script>
+        showloginFailedPopup();
+    </script>
+{{/if}}
+
+{{#if is404}}
+    <script>
+        show404Popup();
+    </script>
+{{/if}}

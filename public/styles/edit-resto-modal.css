@@ -1,0 +1,313 @@
+
+/* MAIN POPUP BODY*/
+.editModal{
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+
+    transform:translate(-50%, -50%);
+    padding: 20px;
+    background-color: #eaf1f5;
+    border: 1px solid #ccc;
+
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    z-index: 1000;
+    border-radius: 10px;
+
+    width: 800px;
+    height: 650px;
+}
+
+.close-button{
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+#editheader{
+    font-size: 34px;
+    font-weight: bold;
+    font-family: 'Space Grotesk', sans-serif;
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+form {
+    text-align: center;
+}
+
+.upper-part{
+    margin-top: 10px;
+    display: flex;
+    flex-direction: row;
+    /* justify-content: center;*/ 
+    /* gap: 150px; */
+
+    padding-left: 20px;
+}
+
+.input-group{
+    display: flex;
+    flex-direction: column;
+    margin: 10px;
+    margin-bottom: 15px;
+}
+
+.editLabel{
+    font-family: 'Lexend', sans-serif;
+    text-align: left;
+}
+
+.styled-input{
+    font-family: 'Lexend', sans-serif;
+    padding: 10px;
+    background-color: #f6f6f6;
+    border: none;
+    border-radius: 12px;
+}
+
+.styled-input input{
+    width: 800px;
+}
+
+/*color for input boxes*/
+.editModal textarea, .styled-input{
+    background-color: #fcfcfc;
+}
+
+#restoName, #address{
+    width: 500px;
+    font-size: 1rem;
+    font-family: 'Lexend', sans-serif;
+}
+
+.shotdesc-coord{
+    display: flex;
+    flex-direction:row;
+    gap: 10px;
+}
+
+.shortdescription, .descriptionedit{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-left: 30px;
+    /* margin-top: 5px;
+    margin-bottom: 15px; */
+}
+
+#shortdesclabel, #desclabel{
+    text-align: left;
+}
+
+#shortdesc{
+    text-align: left;
+    height: 3.5rem;
+    width: 700px;
+}
+
+#editRestoForm textarea{
+    resize: none;
+    margin-bottom: 10px;
+    padding: 10px;
+    border-radius: 12px;
+    font-weight: normal;
+    font-size: 14px;
+    background-color: #fcfcfc;
+    border: none;
+    text-align: justify;
+
+    font-family: 'Lexend', sans-serif;
+}
+
+#desc{
+    text-align: left;
+    height: 10rem;
+    width: 700px;
+}
+
+.attributesedit{
+    padding-left: 40px;
+    display: flex;
+    flex-direction: row;
+    align-content: center;
+    /*justify-content: space-between;*/
+    gap: 4rem;
+    
+}
+
+.firstbatchattri, .secondbatchattri{
+    display: flex;
+    flex-direction: column;
+}
+
+.feature{
+    display: flex;
+    align-items: center;
+    margin-bottom: 5px;
+    gap: 5px;
+}
+
+.saveeditbutton{
+    margin-top:10px;
+    padding: 10px 20px;
+    font-weight: bold;
+    border-radius: 10px;
+    color: white;
+    background-color: rgb(5, 89, 5);
+    border: 1px solid #ccc;
+    font-size: 15px;
+    cursor: pointer;    
+    font-family: 'Space Grotesk', sans-serif;
+}
+
+#saveeditbutton:hover{
+    background-color: rgb(59, 155, 59);
+}
+
+#save-editreview-button:hover{
+    background-color: rgb(59, 155, 59);
+}
+
+.editModalOverlay{
+    display: none; /*disabled by default*/
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.5);
+    z-index: 999;
+}
+
+.editLabel{
+    text-align: left;
+}
+
+form{
+    text-align: left;
+}
+
+#tag-checkbox{
+    padding-left: 20px;
+}
+
+.bottom-wrapper{
+    display: flex;
+    flex-direction: row;
+    align-items: end;
+    justify-content: space-between;
+}
+
+.slider-cone {
+    font-size: 19px;
+    cursor: pointer;
+}
+
+#rating-slider {
+    display: flex;
+    align-items: end;
+    padding-block: 10px;
+}
+
+.editReviewModal {
+    
+    height: fit-content;
+    width: 600px;
+    padding: 1.6rem;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+
+#editReviewModalWrapper{
+    background-color: #f5f5ef;
+    padding: 1rem;
+    
+    border-radius: 13px;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+
+#editReviewModal textarea {
+    font-size: 0.95rem;
+    padding: 5px;
+    border:1px solid #ced4da;
+    resize: none;
+}
+
+
+#editReviewModal textarea:focus-visible {
+    outline: none;
+}
+
+
+#edit-review-desc{
+    height:130px;
+    font-size: 0.8rem !important;
+    text-align: justify;
+}
+
+.buttons-area{
+    display:flex; 
+    justify-content:right; 
+    gap:1rem
+}
+
+.deleteButton{
+    background-color: #ba1a1a;
+
+    margin-top: 10px;
+    padding: 10px 20px;
+    font-weight: bold;
+    border-radius: 10px;
+    color: white;
+    border: 1px solid #ccc;
+    font-size: 15px;
+    cursor: pointer;
+    font-family: 'Space Grotesk', sans-serif;
+}
+
+.deleteButton:hover{
+    background-color: #cb4f4f;
+}
+
+#edit-rev-title{
+    width: 100%;
+}
+
+.edit-modal-button {
+
+    width: fit-content;
+    padding: 5px;
+    display: flex;
+    cursor: pointer;
+    align-items: center;
+    gap: 2px;
+    border: dashed 1px;
+}
+
+.edit-modal-button:hover{
+    color: white;
+    cursor: pointer;
+    background-color: rgb(248,190,29);
+}
+
+#delete-review:hover{
+    color: white;
+    background-color: #d65353;
+}
+
+#edit-review-button-area{
+    width:100%; 
+    display:flex; 
+    justify-content:center;
+    margin-top: 1rem;
+    gap: 1rem;
+}
+
+#image-area{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}

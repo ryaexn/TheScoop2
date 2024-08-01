@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>The Scoop</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="icon" type="image/x-icon" href="/assets/logo.png">
+
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="styles/base.css">
+        <link rel="stylesheet" href="styles/sign-up.css">
+
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+        <script src="scripts/swal-base.js"></script>
+        <script src="scripts/sweetalert.js"></script>
+
+        <script src="scripts/login.js" defer></script>
+        <script src="scripts/search-popup.js" defer></script>
+    </head>
+    <body>
+       {{> header}}
+       {{> yellowbanner}}
+
+        <content>
+            <!--Reviewer / User Sign Up-->
+            <div span class="content-half">
+                <div id="reviewer-box" class="sign-up-container">
+                    <span class="title"><h2>Join us as a Reviewer.</h2></span>
+
+                    <!--REVIEWER SIGN UP-->
+                    <form id="register-reviewer-form" class="form" action="/register-user" onsubmit="return validateSignUpForm({{usernameList}})" method="POST">
+                        <p style="text-align: right;">Required *</p>
+
+                        <div class="form-element">
+                            <input type="text" id="reviewer-username" name="username" placeholder="Username *" autocomplete="off" maxlength="10" required>
+                        </div>
+                        
+                        <!-- EMAIL -->
+                        <div class="form-element">
+                            <input type="email" id="reviewer-email" name="email" placeholder="Email *" autocomplete="off" required>
+                        </div>
+                        <!-- FIRST NAME, LAST NAME -->
+                        <div id="name-input"class="form-element">
+                            <input type="text" id="reviewer-firstname" name="firstname" placeholder="First Name *" autocomplete="off" required>
+                            <input type="text" id="reviewer-lastname" name="lastname" placeholder="Last Name *" autocomplete="off" required>
+                        </div>
+                        <div class="form-element">
+                            <input type="password" id="reviewer-password" name="password" placeholder="Password *" autocomplete="off" required>
+                        </div>
+                        <div class="form-element">
+                            <input type="password" id="reviewer-verify-pass" name="verify-password" placeholder="Verify Password *" autocomplete="off" required>
+                        </div>
+                        
+                        <p>By proceeding, you agree to The Scoop's Terms of Service.</p>
+                        <label for="reviewer-submit" id="rev-submit-wrapper" class="form-element">
+                            <button type="submit" id="reviewer-submit">Sign up</button>
+                        </label>
+                    </form>
+                </div>
+            </div>
+            
+            <div class="vertical-bar"><div class="v-text"> Be part of the Scoop</div><div class="v-text"> Be part of the Scoop</div><div class="v-text"> Be part of the Scoop</div><div class="v-text"> Be part of the Scoop</div></div>
+
+            <!--SIGN UP -->
+            <div class="content-half">
+                <div id="owner-box"class="sign-up-container">
+                    <span class="title"><h2>Put your establishment into the spotlight.</h2></span>
+
+                    
+                    <form id="register-resto-form" class="form" action="/register-restaurant" onsubmit="return validateRestoSignUp({{usernameList}})" method="POST">
+                        <p style="text-align: right;">Required *</p>
+                        <div class="form-element">
+                            <input type="email" id="establishment-email" name="email" placeholder="Official Email *" autocomplete="off" required>
+                        </div>
+                        <div class="form-element">
+                            <input type="text" id="establishment-name" name="restoname" placeholder="Name of Establishment *" autocomplete="off" required>
+                        </div>
+                        <div class="form-element">
+                            <input type="text" id="establishment-username" name="username" placeholder="Username *" autocomplete="off" maxlength="10" required>
+                        </div>
+    
+                        <div class="form-element">
+                            <input type="password" id="establishment-password" name="password" placeholder="Password *" autocomplete="off" required>
+                        </div>
+                        
+                        <select id="establishment-variety" name="tag" class="form-element" required>
+                            <label for="placeholder-tag"></label>
+                            <option value="" id="placeholder-tag"> Select Variety</option>
+                                <option value="Gelato">Gelato</option>
+                                <option value="Frozen Yogurt">Frozen Yogurt</option>
+                                <option value="Vegan">Vegan</option>
+                                <option value="Premium">Premium</option>
+                                <option value="Chocolate">Chocolate</option>
+                                <option value="4 Kids">4 Kids</option>
+                        </select>
+                        
+                        <p> By proceeding, you agree to The Scoop's Terms of Service.</p>
+                        <div class="form-element" id="owner-submit-wrapper">
+                            
+                            <button id="owner-submit" type="submit">Sign up</button>
+                        </div>
+                    </form>
+                </div>
+           </div>
+        </content>
+
+        {{> footer}}
+    </body>
+</html>

@@ -1,0 +1,39 @@
+<footer>
+    <div class="banner"><span>Quick Links</span></a></div>
+    <div class="footer-area">
+        <div class="container">
+            <div class="row">
+                <div class="footer-col">
+                    <h4>The Scoop</h4>
+                    <ul>
+                        <li><a href="/view-restaurants">Search for Establishments</a></li>
+
+                        <li><a href="/#hero">Feature of the Day</a></li>
+                        <li><a href="/#top-establishments">Cherries on Top</a></li>
+                        <li><a href="/#latest-reviews">Latest Reviews</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Frozen Varieties</h4>
+                    <ul>
+                        <li><a href="/view-restaurants?category=Gelato">Gelato</a></li>
+                        <li><a href="/view-restaurants?category=Frozen%20Yogurt">Frozen Yogurt</a></li>
+                        <li><a href="/view-restaurants?category=Vegan">Vegan</a></li>
+                        <li><a href="/view-restaurants?category=Premium">Premium</a></li>
+                        <li><a href="/view-restaurants?category=Chocolate">Chocolate</a></li>
+                        <li><a href="/view-restaurants?category=4%20Kids">4 Kids</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>User Profile </h4>
+                    <ul>
+                        <li><a href="#login" {{#unless isLoggedIn }} onclick= "openLoginPopUp()" {{/unless}}>Login</a></li>
+                        <li><a href= {{#unless isLoggedIn }} "/sign-up" {{else}} "javascript:void(0)" {{/unless}}  >Sign Up</a></li>
+                        <li><a href="/view-user-profile">View Account</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <section class="copyright"> &copy; 2024 CCAPDEV</section>
+</footer>

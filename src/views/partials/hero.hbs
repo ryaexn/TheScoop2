@@ -1,0 +1,26 @@
+    <!--HERO Section-->
+    <section id="hero">
+        <a href="/view-restaurant/{{hero.restaurantId}}"><img src="/assets/reviews/{{hero.media}}" ></a>
+            
+        <div class="vertical-bar">
+            <div class="v-text"> sundae </div>
+            <div class="v-text"> spotlight </div>
+            <div class="v-text"> sundae </div>
+            <div class="v-text"> spotlight </div>
+            <div class="v-text"> sundae</div>
+        </div>
+
+        <div class="hero-content">
+            <div class="hero-info">
+                <a id="hero-establishment" href="/view-restaurant/{{hero.restaurantId}}"><p>&#x1f4cc; &nbsp; {{hero.restoname}}</p></a>
+                <a id="hero-title"href="/view-restaurant/{{hero.restaurantId}}"><h1>{{{hero.title}}}</h1></a>
+                <p class="hero-desc">
+                    {{{hero.body}}}
+                </p>
+                <p class="hero-author">
+                    By {{hero.fullNameOfUser}}
+                </p>
+            <span class="read-more-btn"><a href="/view-restaurant/{{hero.restaurantId}}">Read more <img src="/assets/symbols/arrow-forward.png"> </a></span>           
+            </div>
+        </div>
+    </section>

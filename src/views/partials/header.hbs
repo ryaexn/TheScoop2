@@ -1,0 +1,78 @@
+<!-- header, login pop up, search pop up-->
+
+<!-- HEADER-->
+<header>
+    <a href="/"><span class="logo"><img src="/assets/logo.png"><span>The Scoop</span></span></a>
+
+    <nav>
+        <ul class="nav__links">
+            <li><a href="/view-restaurants">Explore</a></li>
+            <li><a href="javascript:void(0)">Reviews</a></li>
+            <li><a href="javascript:void(0)">Scoops</a></li>
+        </ul>
+    </nav>
+
+    <span class="rightmost-bar">
+        {{#if isLoggedIn}}
+            <a id="search" href="#"><img src="/assets/symbols/search-icon.png"></a>
+            {{#if isOwnerLoggedIn}}
+            <a id="owner-profile" href="/view-restaurant/{{userId}}"><img src="/assets/symbols/owner-icon.png"></a>
+            {{else}}
+            <a id="profile" href="/edit-user-profile"><img src="/assets/symbols/profile-icon.png"></a>
+            {{/if}}
+
+            <a id="logout" href="javascript:void(0)"><button id="logout-button" style="color:black;">Logout</button></a> 
+            <!-- ^ href = /logout after confirm, check login.js-->
+        {{else}}
+            <a id="search" href="#"><img src="/assets/symbols/search-icon.png"></a>
+            <a id="login" href="javascript:void(0)"><button>Login</button></a>
+        {{/if}}
+    </span>
+    <!--POP UP LOGIN-->
+
+{{#unless isLoggedIn}}
+<div id="login-area" class="popup">
+    <div class="close-btn">&times;</div>
+                                           
+    <form id="login-form" class="form" action="/login" method="POST">
+        <h2>Login</h2>
+        <div class="form-element">
+            <label for="username">Username</label>
+            <input required type="text" id="username" name="username">
+        </div>
+
+        <div class="form-element">
+            <label for="password">Password</label>
+            <input required type="password" id="password" name="password">
+        </div>
+
+        <div class="form-element" id="remember-me">
+            <input type="checkbox" id="remember-me" name="remember-me">
+            <label for="remember-me">Remember me</label>
+        </div>
+
+        <div id='login-submit' class="form-element">
+            <button type="submit">Sign in</button>
+        </div>
+
+        <div class="form-element">
+            <a href="/sign-up">Don't have an account? Sign up now!</a>
+        </div>
+
+    </form>
+</div>
+{{/unless}}
+</header>
+
+
+
+<div id="search-popup" class="popup">
+            <p><b> Find your Taste. </b></p>
+            <form action="/view-restaurants" method="get" class="form">
+                <div class="close-btn">&times;</div> 
+                <input id="searcher"  name="searchTarget" type="search" placeholder="Search for an establishment">
+                <input id="searcherbutton" type="submit" value="search">
+            </form>
+</div>
+
+{{> login-popups}}

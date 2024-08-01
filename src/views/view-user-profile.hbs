@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>The Scoop</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="icon" type="image/x-icon" href="/assets/logo.png">
+
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+        <link rel="stylesheet" href="/styles/base.css">
+        <link rel="stylesheet" href="/styles/view-reviewer-profile.css">
+
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+        <script src="scripts/swal-base.js"></script>
+        <script src="/scripts/login.js" defer></script>
+        <script src="/scripts/search-popup.js" defer></script>
+    </head>
+    <body>
+       {{> header}}
+       {{> bluebanner}}
+        <content>
+        
+        <div class="section-header-area">
+            <span class="section-title"><h1>User Profile</h1></span>
+        </div>
+        
+    
+        <div class="card">
+            <div class="left-half">
+                <div class="photo-area">
+                    <div class="icon"><img src="/assets/icons/{{user.image}}"></div>
+                </div> 
+                <div class="reviewer-details">
+                    <div class="reviewer-name">{{user.firstname}} {{user.lastname}}</div>
+                    
+                    <div class="reviewer-subtext">
+                        <span class="reviewer-username"><p>@{{user.username}}</p></span>
+                        <span class="reviewer-email"><p>{{user.email}}</p></span>
+                        <div class="review-count">{{reviewsCount}} reviews made.</div>
+                    </div>
+
+                    
+                </div>
+            </div>
+
+
+            <div class="right-half">
+                <div class="reviewer-bio">
+                    <p>{{{user.bio}}}</p>
+                </div>
+
+                <div class="banner"> </span><span class="yellowtext"> Latest Reviews.</div>
+                <div class="reviews-wrapper">
+
+
+                        {{#unless reviews}}
+                            <div></div>
+                            <div class="encourage-area">
+                                <img src="/assets/gelatissimo-3.jpg">
+                                <img src="/assets/coldstone2.png">
+                                <div class="centered-text">
+                                {{#if isOwnProfile}}
+                                <h1 onclick="window.location.href='/view-restaurants'">Start exploring!🍦</h1>
+                                {{else}}
+                                <h1>This user has no reviews yet! 💔</h1>
+                                {{/if}}
+                                </div>
+                            </div>
+                        {{/unless}}
+
+                        {{#each reviews}}
+                        <div class="mini-review">
+                            <div class="review-info">
+                                <a class="review-resto" href="/view-restaurant/name/{{restoName}}"><p>{{restoName}}</p></a>
+                                <a class="review-title" href="/view-restaurant/name/{{restoName}}#{{_id}}"><h1>{{{title}}}</h1></a>
+                                  <p class="review-desc">
+                                      {{{shortenString body 32}}}
+                                  </p>
+                                  <span class="review-date">created: {{formatDate createdAt}}</span>
+                              </div> 
+                              
+                              <div class="symbol-area" >
+                                <div style="display:flex; gap:0.5rem">
+                                    <span class="cone{{#ifGreaterThan rating 2}} green{{/ifGreaterThan}}">{{rating}}&#x1f366;</span> 
+                                    <span class="cone blue-bg helpfulMarksArea">{{helpfulMarks}}👍</span>
+                                </div>
+                                
+
+                                <span class="view-review"><a href="/view-restaurant/name/{{restoName}}#{{_id}}"><img src="/assets/symbols/arrow-forward.png"></a></span>
+                              </div>
+                        </div>
+                        {{/each}}
+                </div>
+                
+            </div>
+        </div>
+        </content>
+        
+        {{> footer}}
+    </body>
+</html>

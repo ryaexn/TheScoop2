@@ -1,0 +1,151 @@
+.cone {
+    display: inline-block;
+    border-radius: 5px;
+    color:white;
+    padding: 3px;
+    padding-right: 0px;
+    text-align: center;
+    width: 3rem;
+    background:#ba1a1a;
+}
+
+#establishment-shortdesc{
+    width: 75vw;
+    font-size: 1.25em;
+    font-weight: 600;
+    padding-block: 0.75rem;
+}
+
+.hero-info.formatted-info{
+    position: absolute;
+    top: 30vh;
+    left:8%;
+    right: 10%;
+    z-index: 10;
+    background-color: rgba(255, 255, 255, 0.9);
+    border: 1 px solid black;
+    border-radius: 1rem;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    width: fit-content;
+}
+
+.hero-info.formatted-info.slide-down{
+    position: relative;
+    top: 0;
+    left:3%; 
+    right:0;
+}
+
+
+.hero-content{
+    overflow:visible;
+    min-height: 25vh;
+}
+
+#establishment-desc{
+    width: 82vw;
+}
+
+#establishment-shortdesc{
+    padding-block:0;
+}
+
+#hero-title{
+    display: flex; 
+    align-items: center; 
+    justify-content: space-between;
+}
+
+/* CSS */
+.button-74 {
+  background-color: #fbeee0;
+  border: 2px solid #422800;
+  border-radius: 30px;
+  box-shadow: #422800 4px 4px 0 0;
+  color: #422800;
+  cursor: pointer;
+  display: inline-block;
+  font-weight: 600;
+  font-size: 1rem;
+  line-height: 40px;
+  text-align: center;
+  text-decoration: none;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  height: fit-content;
+}
+
+.button-74:hover {
+  background-color: #fff;
+}
+
+.button-74:active {
+  box-shadow: #422800 2px 2px 0 0;
+  transform: translate(2px, 2px);
+}
+
+@media (min-width: 768px) {
+  .button-74 {
+    min-width: 120px;
+    padding: 0px 5px;
+  }
+}
+
+.white {
+    background-color: white;
+    box-shadow: black 4px 4px 0 0; ;
+}
+
+.white:hover{
+    background-color: #eae7e6;
+}
+
+.user-area-wrapper {
+  height: 100%;
+}
+
+.mini-review{
+  align-items:start;
+}
+
+.title{
+
+}
+
+.body{
+  margin-top: 0.9rem;
+  color: #1b4d7a;
+  text-align: justify;
+}
+
+.review-date{
+  color:rgb(133, 125, 125);
+  display:flex;
+  align-items: center;
+}
+
+.mini-review .text-area{
+  justify-content: space-between;
+}
+
+
+#submit-review{
+  
+    width: fit-content;
+    padding: 5px;
+    display: flex;
+    cursor: pointer;
+    align-items: center;
+    gap: 2px;
+    border: dashed 1px;
+    font-weight: normal;
+    font-size: 1rem;
+    color: black;
+    background-color: transparent;
+    border-radius: 0;
+}
+
+#submit-review:hover {
+  background-color: rgb(252, 251, 251);
+}

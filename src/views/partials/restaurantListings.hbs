@@ -1,0 +1,65 @@
+        <section id="top-establishments">
+        <div class="section-header-area">
+            <span class="section-title" id=top-establishments-title><h1>Explore different establishments</h1></span>
+            <span class="search-area" id="search-area">
+                <form action="/view-restaurants">
+                    <input name="searchTarget" id="searcher2" type="search" placeholder="Find your Taste.">
+                    <input id="searcherbutton2" type="submit" value="search">
+                </form>
+            </span>
+        </div>
+        <hr class="gradient-blue-hr">
+
+        <ul id="categorySelection">
+            <li><a href="/view-restaurants?category=Gelato">Gelato</a></li>
+            <li><a href="/view-restaurants?category=Frozen%20Yogurt">Frozen Yogurt</a></li>
+            <li><a href="/view-restaurants?category=Vegan">Vegan</a></li>
+            <li><a href="/view-restaurants?category=Premium">Premium</a></li>
+            <li><a href="/view-restaurants?category=Chocolate">Chocolate</a></li>
+            <li><a href="/view-restaurants?category=4%20Kids">4 Kids</a></li>
+            <li><a href="/view-restaurants">All</a></li>
+        </ul>
+        <!-- Note: isSearchRequest and isCategoryRequest cannot be true at the same time -->
+        {{#if isSearchRequest}}
+        <span id="search-res-desc">{{restaurantCount}} result(s) for <span class="searchCriteria">{{searchTarget}}</span>.</span>
+        {{/if}}
+
+        {{#if isCategoryRequest}}
+        <span id="search-res-desc">{{restaurantCount}} result(s) under <span class="searchCriteria">{{category}}</span>.</span>
+        {{/if}}
+
+        <div class="establishments-area">
+        {{#each restaurants }}
+
+            <div class="establishments-showcase" id="resto_{{_id}}" >
+                <div class="tab-text">{{tag}}</div>
+
+                <a href="/view-restaurant/{{_id}}"> <img src="assets/{{mainMedia}}"> </a>
+                
+                <span class="establishment-name">{{name}}</span>
+                <span class="establishment-rating">
+                    {{#times rating}}
+                    <span class="cone" style="font-size: 1rem">&#x1f366;</span>
+                    {{/times}} 
+                    {{#times fiveMinusRating}}
+                    <span class="cone-greyed" style="font-size: 1rem">&#x1f366;</span>
+                    {{/times}}
+                </span>
+                <hr class="rating-hr">
+                <div class="establishment-rating-num" style="font-size:0.8rem">Current Rating</div>
+                <span class="establishment-desc">
+                    <p style="font-size:0.75rem; padding-inline: 0.5rem; padding-bottom: 0.5rem;">
+                       {{shortDescription}}
+                    </p>
+
+                </span>
+            </div>
+            {{#ifMultipleOf index 4}}
+        </div>
+        <div class="establishments-area">  
+            {{/ifMultipleOf}}
+        {{/each}}
+        </div>
+        <hr class="gradient-red-hr">
+
+    </section>
