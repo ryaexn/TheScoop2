@@ -13,6 +13,7 @@ function connect() {
 }
 
 async function checkDatabase() {
+  
   const uri = 'mongodb://0.0.0.0:27017/';
   const databaseName = 'thescoop'
   
