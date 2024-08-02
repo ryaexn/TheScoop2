@@ -30,7 +30,6 @@ To run the application locally on your machine, follow these simple steps:
 4. **Access the Application**:
     Visit `http://localhost:3000` using any browser, preferably Chrome.
 
-### Windows:
 Make sure to have nodeJS installed, as well as a running mongoDB Server.
 
 ## Contributors
