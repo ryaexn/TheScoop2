@@ -32,7 +32,6 @@ function ifGreaterThan(v1, v2, options){
     return options.inverse(this);
 }
 
-
 function formatDate(dateString) {
     // Parse the date string
     const date = new Date(dateString);

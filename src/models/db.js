@@ -37,7 +37,7 @@ async function checkDatabase() {
     // Check if the specified database exists
     const dbExists = databasesList.databases.some(db => db.name === databaseName);
 
-    // console.log(dbExists);
+    console.log(`DB Exists? ${dbExists}`);
     // Close the connections
     await client.close();
     

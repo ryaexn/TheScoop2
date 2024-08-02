@@ -88,8 +88,6 @@ async function handleViewUserRequest(req, resp){
     const user = await getUserByUsername(targetUserName);
     let {reviews, reviewsCount}= await getTwoReviewsFromUser(user.username);
     
-    
-
     resp.render('view-user-profile', {
         user: user,
         reviews: reviews,
@@ -126,8 +124,8 @@ async function createNewUser(body){
 
 async function processSignUpRequest(req, res){
 
-    console.log(req.body);
-    console.log(req.session);
+    // console.log(req.body);
+    // console.log(req.session);
     
     const newUser = await createNewUser(req.body);
     
