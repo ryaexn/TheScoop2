@@ -54,10 +54,11 @@ header {
 header a {
     text-transform: uppercase;
     width: fit-content;
+    text-decoration: none !important;
 }
 
 header > a {
-    width: 300px;
+    /* width: 300px; */
 }
 
 .logo {
