@@ -84,9 +84,9 @@ async function main(){
         }
     });
 
-    process.on('SIGTERM',finalClose);  
-    process.on('SIGINT', finalClose); 
-    process.on('SIGQUIT', finalClose);
+    // process.on('SIGTERM',finalClose);  
+    // process.on('SIGINT', finalClose); 
+    // process.on('SIGQUIT', finalClose);
 }
 
 main();
