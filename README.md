@@ -15,7 +15,7 @@ To run the application locally on your machine, follow these simple steps:
 
 2. **Navigate to the Project Directory**:
     ```bash
-    cd thescoop
+    cd thescoop2
     ```
 3. **Install Dependencies**:
     ```bash

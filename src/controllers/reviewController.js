@@ -234,24 +234,24 @@ async function updateReviewDetails(req, resp){
     const reviewId =  req.body.reviewId;
 
     try {
+        const currentReview = await Review.findById(reviewId);
+        const currentRating = currentReview.rating;
+
         const updateData = {
             rating : Number(req.body.rating) ,
             title : req.body.title,
             body : req.body.description,
-            media : req.file ? (req.file.filename) : ""
+            media : req.file ? (req.file.filename) : currentReview.media //  Replace only if there is an input image, otherwise keep orig image
         }; 
-
-        const currentReview = await Review.findById(reviewId);
-        const currentRating = currentReview.rating;
 
         if (updateData.rating != currentReview.rating){
             updateRestaurantFromEditReview(currentReview, updateData.rating, false);
         }
 
         const updatedReview = await Review.findByIdAndUpdate(reviewId, updateData, {runValidators: true, new: true});
-
-        console.log("OLD"+currentReview)
-        console.log("NEW"+updatedReview);
+        
+        console.log("OLD Review: "+currentReview)
+        console.log("NEW Review: "+updatedReview);
         resp.send({success: true});
     } catch (err) {
         console.log(`Error updating review ${reviewId}`);
