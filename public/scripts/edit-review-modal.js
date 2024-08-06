@@ -50,12 +50,12 @@ function closeEditReviewPopup(){
 
     document.getElementById('edit-rev-title').value = "";
     document.getElementById('edit-review-desc').value = "";
-    document.getElementById('review-image-input').remove(); // remove hidden photo input; id is in changeReviewPhoto()
 
-    // Hide edit popup
-    document.getElementById('editReviewModal').style.display= 'none';
-    // Disable overlay
-    document.getElementById('overlay').style.display= 'none';
+    if (document.getElementById('review-image-input'))
+      document.getElementById('review-image-input').remove(); // remove hidden photo input; id is in changeReviewPhoto()
+
+    document.getElementById('editReviewModal').style.display= 'none'; // Hide edit popup
+    document.getElementById('overlay').style.display= 'none'; // Disable overlay
     
 }
 
