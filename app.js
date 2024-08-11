@@ -69,12 +69,13 @@ async function main(){
             
             await connect();
             console.log(`Now connected to MongoDB`);
+
             await checkDatabase().then( (dbExists) => {
-             console.log(dbExists);
+                console.log(dbExists);
                 if (!dbExists){
-                     loadRestaurants();
-                     loadUsers();
-                     loadReviews();
+                    loadRestaurants();
+                    loadUsers();
+                    loadReviews();
                 }
          });
             
