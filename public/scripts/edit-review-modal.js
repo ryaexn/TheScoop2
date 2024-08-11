@@ -16,12 +16,12 @@ function openEditReviewModal(reviewId){
     .then(response => response.json())
     .then(review => {
         
-        // for(i=1; i<= Number(review.rating); i++){
-        //     console.log(`edit-cone${i}`);
-        
-        //     console.log(cone);
-        //     document.getElementById(`edit-cone${i}`).classList.add('checked');
-        // }
+        for(i=1; i<= Number(review.rating); i++){
+            console.log(`edit-cone${i}`);
+            document.getElementById(`edit-cone${i}`).classList.add('checked');
+            $('#newreview-rating').val(Number(review.rating)); // put input value in hidden input
+        }
+
         document.getElementById(`review-id`).value = review._id;
         document.getElementById('edit-rev-title').value = review.title;
         document.getElementById('edit-review-desc').value = review.body;
@@ -41,27 +41,28 @@ function openEditReviewModal(reviewId){
 
 function closeEditReviewPopup(){
     
-    
-    // Hide edit popup
-    document.getElementById('editReviewModal').style.display= 'none';
-    // Disable overlay
-    document.getElementById('overlay').style.display= 'none';
+    for(i=1; i<= 5; i++){    
+      document.getElementById(`edit-cone${i}`).classList.remove('checked'); // clear the rating
+    }
+
     document.getElementById('review-image').src = "";
     document.getElementById('review-image').style.display = 'none';
 
     document.getElementById('edit-rev-title').value = "";
     document.getElementById('edit-review-desc').value = "";
-    document.getElementById('review-image-input').remove(); // remove hidden photo input; id is in changeReviewPhoto()
 
-    for(i=1; i<= Number(review.rating); i++){    
-        document.getElementById(`edit-cone${i}`).classList.remove('checked');
-     }
+    if (document.getElementById('review-image-input'))
+      document.getElementById('review-image-input').remove(); // remove hidden photo input; id is in changeReviewPhoto()
+
+    document.getElementById('editReviewModal').style.display= 'none'; // Hide edit popup
+    document.getElementById('overlay').style.display= 'none'; // Disable overlay
+    
 }
 
 
 // For changing / adding review photos in edit reviews
 function changeReviewPhoto(){
-    
+  
     const input = document.createElement('input');
     
     input.type = 'file';
@@ -69,7 +70,7 @@ function changeReviewPhoto(){
     input.name = 'newReviewImage';
     input.style.display = 'none'; // keep the input box hidden
     input.id = 'review-image-input';
-
+  
     // Add an event listener to handle file selection
     input.addEventListener('change', function(event) {
         const file = event.target.files[0];
@@ -103,7 +104,7 @@ $(document).ready(function() {
             url: '/update-review',
             type: 'POST',
             data: formData,
-            procesData: false,
+            processData: false,
             contentType: false,
             success: function(response) {
                 // Show SweetAlert on successful response

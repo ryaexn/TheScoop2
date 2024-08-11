@@ -28,7 +28,7 @@ $(document).ready(function() {
 // Fake Delete button
 $(document).ready(function() {
     $('#fake-delete-account-btn').click(function() {
-        Swal({
+        Swal.fire({
             title: "Unable to Delete Account",
             text: "You can't delete your account when you have reviews. Please delete your reviews first.",
             icon: "warning",
