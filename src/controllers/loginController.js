@@ -69,7 +69,7 @@ async function getAllUsernames(){
             ...restaurant_usernames.map(doc => doc.username)
         ];
 
-        console.log("All usernames:", all_usernames);
+        // console.log("All usernames:", all_usernames);
         return all_usernames;
     } catch (err) {
         console.log("Error getting all usernames.")
@@ -81,12 +81,12 @@ async function getAllUsernames(){
 async function handleSignUpRequest(req, res){
     
     const allUsernames = await getAllUsernames();
-    console.log(`Users: ${JSON.stringify(allUsernames)}`);
+    // console.log(`Users: ${JSON.stringify(allUsernames)}`);
 
     res.render('sign-up', {
         usernameList: JSON.stringify(allUsernames)
 
-        });
+    });
 }
 
 module.exports = {handleLoginRequest, handleLogoutRequest, handleSignUpRequest}

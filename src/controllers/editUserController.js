@@ -43,7 +43,7 @@ async function handleEditUserResponse(req, resp){
 
     const user = await getUserByUsername(username);
     const {reviews, reviewsCount} = await getReviewsFromUser(username);
-    console.log(reviewsCount);
+    // console.log(reviewsCount);
     // console.log(user);
     resp.render('edit-user-profile',{
         
@@ -86,7 +86,7 @@ async function verifyCurrentPassword(req, resp){
     const user = await User.findById(req.session.userId);
     if (user) {
         const isMatch = await bcrypt.compare(req.body.password, user.password);
-        console.log(isMatch);
+        console.log("Password-match: " + isMatch);
         if(isMatch){
             resp.send({success: true})
         } else {
@@ -98,7 +98,7 @@ async function verifyCurrentPassword(req, resp){
 
 async function changePasswordRequest(req, resp){
 
-    console.log(`New password: ${req.body.newPassword}`);
+    // console.log(`New password: ${req.body.newPassword}`);
     const userId = req.session.userId;
     
     const salt = await bcrypt.genSalt(10);
@@ -151,7 +151,7 @@ async function updateUserPhoto(req, resp){
 
             isAuthenticated(req, resp, resp.send({success: true}));
             
-            console.log(user);
+            // console.log(user);
         }
     } catch(err){
         console.log(err);

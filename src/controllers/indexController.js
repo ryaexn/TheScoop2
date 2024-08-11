@@ -2,8 +2,6 @@ const Restaurant = require('../models/Restaurant.js');
 const User = require('../models/User.js');
 const Review = require('../models/Review.js')
 
-const mongoose = require('mongoose');
-
 async function getHeroFeature(){
     try {
         // Get randomized review with 5 stars and image

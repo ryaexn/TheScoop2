@@ -276,7 +276,7 @@ async function createNewRestaurant(body){
         });
 
         const resto = await restaurantData.save();
-        console.log(resto);
+        // console.log(resto);
 
         return resto;
     } catch(err){
@@ -289,7 +289,7 @@ async function processSignUpRestaurant(req, res){
     console.log(req.body);
     
     const newRestaurant = await createNewRestaurant(req.body);
-        console.log(newRestaurant);
+        // console.log(newRestaurant);
 
     const restoName = req.body.restoname;
 
@@ -304,7 +304,7 @@ async function processSignUpRestaurant(req, res){
 }   
 
 async function updateRestaurantPhoto(req, res){
-    console.log(req.body);
+    // console.log(req.body);
     console.log(req.file);
 
     const userId = req.session.userId;
@@ -314,7 +314,7 @@ async function updateRestaurantPhoto(req, res){
         if (req.file){
             const resto = await Restaurant.findByIdAndUpdate(userId, {$set: { [`media.${index}`] : req.file.filename} }, {new:true});
             res.success = true;
-            console.log(resto);
+            // console.log(resto);
         }
         res.send({success: true});
     } catch(err){
@@ -355,9 +355,7 @@ async function updateRestaurant(restoId, body){
             tag: tags 
         };
 
-        
         // const updatedResto = await Restaurant.find()
-
 
         const updatedResto = await Restaurant.findByIdAndUpdate(restoId, restoData, 
             {runValidators: true});
@@ -366,7 +364,7 @@ async function updateRestaurant(restoId, body){
             await Review.updateMany({restoName: updatedResto.name}, { $set: {restoName: restoData.name}});
         }
 
-        console.log(updatedResto);
+        // console.log(updatedResto);
         
     } catch(err){
         console.log(`Error updating restaurant of id: ${restoId}`);
@@ -376,7 +374,7 @@ async function updateRestaurant(restoId, body){
 
 async function handleEditRestaurantRequest(req, res){
     
-    console.log(req.body);
+    // console.log(req.body);
     const restoId = req.session.userId;
         
     try {
@@ -399,7 +397,7 @@ async function deleteRestaurantRequest(req, resp){
 
         const updatedUser = await Restaurant.findByIdAndUpdate(userId, updateData, { new: true, runValidators: true });
 
-        console.log(updatedUser.name);
+        // console.log(updatedUser.name);
         const name = updatedUser.name;
         await Review.updateMany({restoName: name }, {isDeleted: true, deletedAt: Date.now()});
         
@@ -415,15 +413,15 @@ async function deleteRestaurantRequest(req, resp){
 async function handleReplyReviewRequest(req, resp){
 
     try {   
-        console.log(req.body.replyMessage);
-        console.log(req.body.reviewId);
+        //console.log(req.body.replyMessage);
+        //console.log(req.body.reviewId);
 
         const reviewId = req.body.reviewId;
         const rep = req.body.replyMessage;
         const restoId = req.session.userId;
 
         const review = await Review.findByIdAndUpdate(reviewId, { reply: rep }, {new: true});
-        console.log(review);
+        // console.log(review);
         
         resp.redirect(`/view-restaurant/${restoId}#review${reviewId}`);
 

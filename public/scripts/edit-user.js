@@ -77,7 +77,7 @@ $(document).ready(function() {
           const reader = new FileReader();
           reader.onload = function(e) {
               $('#user-icon-img').attr('src', e.target.result);
-              console.log(file);
+              // console.log(file);
           }
 
           reader.readAsDataURL(file);
