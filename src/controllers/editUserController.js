@@ -148,8 +148,8 @@ async function updateUserPhoto(req, resp){
 
             resp.locals.userIcon = user.image;
             req.session.userIcon = user.image;
-
-            isAuthenticated(req, resp, resp.send({success: true}));
+            
+            // isAuthenticated(req, resp, resp.send({success: true}));
             
             // console.log(user);
         }
