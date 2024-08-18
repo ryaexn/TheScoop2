@@ -113,22 +113,35 @@ async function handleCreateReviewRequest(req, resp){
 async function handleLikeUnlikeRequest(req, resp){
 
     try {
-        const reviewId = req.body.reviewId
+        const { reviewId } = req.body;
+        const { userId } = req.session;
+
         const review = await Review.findById(reviewId);
-        
-        const like = req.body.isLike == 'true';
+        const like = ( req.body.isLike == 'true' ) ;
         
         if (like) {
             
-            await Review.findByIdAndUpdate(reviewId, {
-                helpfulMarks : review.helpfulMarks + 1
-            });
+            const [rev, user] = await Promise.all([
+                Review.findByIdAndUpdate(reviewId, {
+                    helpfulMarks : review.helpfulMarks + 1
+                }),
+                User.findByIdAndUpdate(userId, {
+                    $addToSet: { reviewsMarkedHelpful: reviewId }
+                }, { new: true})
+            ]);
+            
             resp.send({success: true})
         } else {
             
-            await Review.findByIdAndUpdate(reviewId, {
-                helpfulMarks : (review.helpfulMarks - 1)
-            });
+            await Promise.all([
+                Review.findByIdAndUpdate(reviewId, {
+                    helpfulMarks : review.helpfulMarks - 1
+                }),
+                User.findByIdAndUpdate(userId, {
+                    $pull: { reviewsMarkedHelpful: reviewId }
+                })
+            ]);
+
             resp.send({success: true})
         }
     } catch(err){

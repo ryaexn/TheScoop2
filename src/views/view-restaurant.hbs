@@ -94,13 +94,13 @@
                         </div>
                     </div>
                     
-                    <!--EDIT-->
-                    <!--EDIT BUTTON TODO: SCRIPT-->
+                    <!--EDIT MODAL -->
                     {{> edit-resto-modal}}
                 </div>
             </div>
         </div>
         
+        <!-- OWNER REPLY MODAL-->
         <div id="replyModal" class="owner-reply-modal" >
             <form id="replyForm" action="/process-review-reply" method="POST">
                 <span class="reply-header">Reply to user</span>
@@ -179,10 +179,17 @@
                                 {{#ifGreaterThan helpfulMarks 0}}
                                 <p class="helpful-count-text"><img src="/assets/symbols/lightbulb.png"><span class="like-counter">{{helpfulMarks}}</span>&nbsp;people found this helpful.</p>
                                 {{/ifGreaterThan}}
+
+
+                                {{!-- TODO --}}
+                                {{#if isLiked}}
+                                <p id="helpful-{{_id}}" class='helpful-tag'><img src='/assets/symbols/lightbulb.png'> You marked this review as helpful.</p>
+                                {{/if}}
+                                
                             </div>
                         </div>
 
-                        {{!-- TODO CHANGE TO REPLY  --}}
+                        
                         {{#if ../isLoggedIn}}
                             {{#ifEquals ../username username}}
                             
@@ -192,7 +199,7 @@
                                 {{#if ../hasEditAccess}}
                                     <span class="view-review helpful-btn reply-btn" ><a style="cursor:pointer"><img src="/assets/symbols/quick-reply.png" onclick="openReply('{{_id}}')"></a></span>
                                 {{/if}}
-                                <span class="view-review helpful-btn" ><a style="cursor:pointer"><img src="/assets/symbols/lightbulb.png" onclick="toggleHelpful(this, '{{_id}}')"></a></span>
+                                <span class="view-review helpful-btn {{#if isLiked}}yellowed{{/if}}" ><a style="cursor:pointer"><img src="/assets/symbols/lightbulb.png" onclick="toggleHelpful(this, '{{_id}}')"></a></span>
                                 </div>
                             {{/ifEquals}}
                         {{/if}}
@@ -200,8 +207,6 @@
                         
                     </div>
                     {{/each}} <!-- Close review loop-->
-
-                    {{!-- TODO REPLY MODAL --}}
 
                     {{#if isLoggedIn}}
                     <!-- NEW REVIEW AREA--> 
@@ -252,7 +257,7 @@
 
                         </div>
                             
-                        <!--TODO: FIX ONCLICK-->
+                        
                         
                     </div>
                     </form>

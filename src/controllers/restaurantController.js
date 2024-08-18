@@ -167,28 +167,37 @@ async function searchRestaurantByName(targetName){
     }
 }
 
-async function getReviewsUnderRestaurant(restaurant){
+async function getReviewsUnderRestaurant(restaurant, userId){
     try {
         let reviewResults = [];
         let count = restaurant.numberOfReviews;
 
+        if (userId){
+            let currentUser = await User.findById(userId, { _id: 0, reviewsMarkedHelpful: 1 }).exec();
+            var currUserReviews = currentUser.reviewsMarkedHelpful;
+        }
+        
+
+        console.log(`Reviews of user: ${currUserReviews}`);
+        console.log(typeof currUserReviews);
+
         for (let i=count-1; i >= 0; i--){
             
-            // find review given reviews arr of restaurant
+            // Find review given reviews arr of restaurant
             let review_id = restaurant.reviews[i];
-            reviewResults[i] = await Review.findById(review_id).exec();
-
-            // console.log(`i = ${i}`,reviewResults[i]);
-            reviewResults[i] = reviewResults[i].toObject();
+            reviewResults[i] = await Review.findById(review_id).lean().exec();
 
             // find associated user given the review found
             let user = await User.findOne({username: reviewResults[i].username}).exec();
             
             reviewResults[i].authorImage = user.image;
             reviewResults[i].fullName = user.firstname + " " + user.lastname; // format name
+
+            reviewResults[i].isLiked = currUserReviews.includes(review_id);
         }
 
         reviewResults.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt)); // sort by most recent
+        console.log(reviewResults);
         
         return reviewResults;
     } catch(err) {
@@ -205,31 +214,48 @@ async function handleViewRestaurantDetailsRequest(req, resp){
     const restaurantId = req.params.id; 
     const restoName = req.params.restoName;
 
+    const { userId, isLoggedIn } = req.session;
+
     if(restaurantId){
         var restaurant = await searchRestaurantById(restaurantId);
     } else {
         var restaurant = await searchRestaurantByName(restoName);
     }
     if (restaurant.numberOfReviews > 0){
-        var associatedReviews = await getReviewsUnderRestaurant(restaurant);
+        var associatedReviews = await getReviewsUnderRestaurant(restaurant, userId);
     }
 
     // For Edit Resto Modal
-    // Initialize flags
-    let isGelato = false;
-    let isFrozenYogurt = false;
-    let isVegan = false;
-    let isPremium = false;
-    let isChocolate = false;
-    let is4Kids = false;
+    // // Initialize flags
+    // let isGelato = false;
+    // let isFrozenYogurt = false;
+    // let isVegan = false;
+    // let isPremium = false;
+    // let isChocolate = false;
+    // let is4Kids = false;
 
-    // Check tags and set flags
-    if (restaurant.tag.includes("Gelato")) isGelato = true;
-    if (restaurant.tag.includes("Frozen Yogurt")) isFrozenYogurt = true;
-    if (restaurant.tag.includes("Vegan")) isVegan = true;
-    if (restaurant.tag.includes("Premium")) isPremium = true;
-    if (restaurant.tag.includes("Chocolate")) isChocolate = true;
-    if (restaurant.tag.includes("4 Kids")) is4Kids = true;
+    // // Check tags and set flags
+    // if (restaurant.tag.includes("Gelato")) isGelato = true;
+    // if (restaurant.tag.includes("Frozen Yogurt")) isFrozenYogurt = true;
+    // if (restaurant.tag.includes("Vegan")) isVegan = true;
+    // if (restaurant.tag.includes("Premium")) isPremium = true;
+    // if (restaurant.tag.includes("Chocolate")) isChocolate = true;
+    // if (restaurant.tag.includes("4 Kids")) is4Kids = true;
+
+    const tags = {
+        isGelato: "Gelato",
+        isFrozenYogurt: "Frozen Yogurt",
+        isVegan: "Vegan",
+        isPremium: "Premium",
+        isChocolate: "Chocolate",
+        is4Kids: "4 Kids"
+    };
+    
+    const flags = Object.fromEntries(
+        Object.entries(tags).map(([key, value]) => [key, restaurant.tag.includes(value)])
+    );
+    
+    const { isGelato, isFrozenYogurt, isVegan, isPremium, isChocolate, is4Kids } = flags;
     
     // console.log(`isGelato: ${isGelato}`);
     // console.log(`isFrozenYogurt: ${isFrozenYogurt}`);
@@ -240,7 +266,7 @@ async function handleViewRestaurantDetailsRequest(req, resp){
     // console.log(`${req.session.isLoggedIn} ? ${req.session.userId} ? ${restaurant._id}`)
 
     // Only owners have edit access
-    const hasEditAccess = ( req.session.isLoggedIn && (req.session.userId == restaurant._id) );
+    const hasEditAccess = ( isLoggedIn && (userId == restaurant._id) );
 
     console.log(`Edit Access: ${hasEditAccess}`);
     

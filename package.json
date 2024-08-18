@@ -4,12 +4,8 @@
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-<<<<<<< Updated upstream
-    "start": "node app.js"
-=======
     "start": "node app.js",
     "dev": "nodemon app.js"
->>>>>>> Stashed changes
   },
   "dependencies": {
     "bcryptjs": "^2.4.3",
