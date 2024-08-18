@@ -27,7 +27,7 @@ async function loginUser(req, username, password) {
                     req.session.userIcon = restaurantUser.media[1];
                     req.session['isLoggedIn'] = true;
                     req.session['isOwnerLoggedIn'] = true;
-                    return { success: true, redirectUrl: "/view-restaurant/" + restaurantUser._id };
+                    return { success: true, redirectUrl: `/view-restaurant/${restaurantUser._id}`};
                 }
             }
         }
