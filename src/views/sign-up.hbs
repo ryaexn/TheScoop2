@@ -33,11 +33,11 @@
                     <span class="title"><h2>Join us as a Reviewer.</h2></span>
 
                     <!--REVIEWER SIGN UP-->
-                    <form id="register-reviewer-form" class="form" action="/register-user" onsubmit="return validateSignUpForm({{usernameList}})" method="POST">
+                    <form id="register-reviewer-form" class="form" action="/register-user" onsubmit="return validateSignUpForm() && false" method="POST">
                         <p style="text-align: right;">Required *</p>
 
                         <div class="form-element">
-                            <input type="text" id="reviewer-username" name="username" placeholder="Username *" autocomplete="off" maxlength="10" required>
+                            <input type="text" id="reviewer-username" name="username" placeholder="Username *" autocomplete="off" maxlength="16" required>
                         </div>
                         
                         <!-- EMAIL -->
@@ -72,7 +72,7 @@
                     <span class="title"><h2>Put your establishment into the spotlight.</h2></span>
 
                     
-                    <form id="register-resto-form" class="form" action="/register-restaurant" onsubmit="return validateRestoSignUp({{usernameList}})" method="POST">
+                    <form id="register-resto-form" class="form" action="/register-restaurant" onsubmit="return validateRestoSignUp() && false" method="POST">
                         <p style="text-align: right;">Required *</p>
                         <div class="form-element">
                             <input type="email" id="establishment-email" name="email" placeholder="Official Email *" autocomplete="off" required>
@@ -81,7 +81,7 @@
                             <input type="text" id="establishment-name" name="restoname" placeholder="Name of Establishment *" autocomplete="off" required>
                         </div>
                         <div class="form-element">
-                            <input type="text" id="establishment-username" name="username" placeholder="Username *" autocomplete="off" maxlength="10" required>
+                            <input type="text" id="establishment-username" name="username" placeholder="Username *" autocomplete="off" maxlength="16" required>
                         </div>
     
                         <div class="form-element">

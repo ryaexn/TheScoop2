@@ -5,7 +5,7 @@ const router = express.Router();
 const { isAuthenticated } = require('../middleware/auth');
 
 const { handleIndexResponse} = require('../controllers/indexController');
-const { handleLoginRequest, handleLogoutRequest, handleSignUpRequest } = require('../controllers/loginController');
+const { handleLoginRequest, handleLogoutRequest, handleSignUpRequest, validateUsername, validateRestoName } = require('../controllers/loginController');
 const { handleViewRestaurantsRequest, handleViewRestaurantDetailsRequest, processSignUpRestaurant, updateRestaurantPhoto, handleEditRestaurantRequest, deleteRestaurantRequest, handleReplyReviewRequest } = require('../controllers/restaurantController');
 const { handleViewUserRequest, processSignUpRequest } = require('../controllers/userController');
 const { handleEditUserResponse, processEditUser, verifyCurrentPassword, changePasswordRequest, deleteUserRequest, updateUserPhoto } = require('../controllers/editUserController');
@@ -26,6 +26,8 @@ router.get('/sign-up', handleSignUpRequest);
 // Sign up form processing
 router.post('/register-user', processSignUpRequest);
 router.post('/register-restaurant', processSignUpRestaurant);
+router.post('/validate-username', validateUsername);
+router.post('/validate-restoname', validateRestoName)
 
 // View, Edit Restaurants
 router.get('/view-restaurants', handleViewRestaurantsRequest);

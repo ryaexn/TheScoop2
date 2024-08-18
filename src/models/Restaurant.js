@@ -2,7 +2,7 @@ const { Schema, SchemaTypes, mode, model, mongoose } = require('mongoose');
 
 const restaurantSchema = new Schema({
     
-    name: {type: String, required: true},
+    name: {type: String, required: true, unique: true},
     location: {type: String, default: 'Philippines'},
 
     //media

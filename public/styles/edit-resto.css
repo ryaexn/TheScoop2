@@ -1,18 +1,19 @@
 .edit-gallery-btn{
     position: absolute;
-    top: 65%;
+    bottom: 5%;
+    left: 35%;
 }
 
 #button0{
-    left: 10vw;
+    /* left: 10vw; */
 }
 
 #button1{
-    left: 45vw;
+    /* left: 1vw; */
 }
 
 #button2{
-    right: 10vw;
+    /* right: 10vw; */
 }
 
 
