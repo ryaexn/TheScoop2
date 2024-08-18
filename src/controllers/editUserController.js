@@ -157,6 +157,7 @@ async function updateUserPhoto(req, resp){
         }
     } catch(err){
         console.log(err);
+        resp.error("Error updating photo!");
     }
 }
 
