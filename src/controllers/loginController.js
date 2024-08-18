@@ -72,17 +72,12 @@ async function validateUsername(req, res){
             ...restaurant_usernames.map(doc => doc.username)
         ];
 
-<<<<<<< Updated upstream
-        // console.log("All usernames:", all_usernames);
-        return all_usernames;
-=======
         if (!all_usernames.includes(username)){
             res.status(200).json({message: "OK"});
         } else {
             res.status(400).json({error: "Username already exists."});
         }
 
->>>>>>> Stashed changes
     } catch (err) {
         console.log("Error getting all usernames.")
         console.error(err);
@@ -114,11 +109,7 @@ async function validateRestoName(req, res){
 // This only redirects to sign up page
 async function handleSignUpRequest(req, res){
     
-<<<<<<< Updated upstream
-    const allUsernames = await getAllUsernames();
-=======
     // const allUsernames = await getAllUsernames();
->>>>>>> Stashed changes
     // console.log(`Users: ${JSON.stringify(allUsernames)}`);
 
     res.render('sign-up', {
