@@ -1,7 +1,7 @@
 const Review  = require('../models/Review.js');
 const User = require('../models/User.js');
 const Restaurant = require('../models/Restaurant.js');
-const isAuthenticated = require('../middleware/auth');
+const { isAuthenticated } = require('../middleware/auth');
 const bcrypt = require('bcryptjs');
 
 async function getReviewsFromUser(username){
@@ -144,13 +144,15 @@ async function updateUserPhoto(req, resp){
     // console.log(req.file);
     try{
         if (req.file){
-            const user = await User.findByIdAndUpdate(userId, {image: req.file.filename}, {new:true});
+            const {filename} = req.file;
 
-            resp.locals.userIcon = user.image;
-            req.session.userIcon = user.image;
-            
-            // isAuthenticated(req, resp, resp.send({success: true}));
-            
+            const user = await User.findByIdAndUpdate(userId, {image: filename}, {new:true});
+
+            resp.locals.userIcon = filename;
+            req.session.userIcon = filename;
+
+            isAuthenticated(req, resp, () => resp.send({success: true}));
+        
             // console.log(user);
         }
     } catch(err){

@@ -160,8 +160,16 @@
                                 <p class="body">{{{body}}}</p>
                                 <br>
                                 <div class="photo-comment-area">
+
                                 {{#if media}}
-                                <img class="review-img" src="/assets/reviews/{{media}}">
+                                <img class="review-img" src="/assets/reviews/{{media}}" onclick="magnifyPhoto('{{_id}}')">
+                                <!--PHOTO MODAL-->
+                                <div id="photo-{{_id}}" class="photoModal">
+                                    <span id="unmagnify-button" class="close" onclick="unmagnifyPhoto('{{_id}}')">&times;</span>
+                                    <img class="photoModal-content" id="photoModalImage" src="/assets/reviews/{{media}}">
+                                    <div class="photo-caption"> {{{title}}}</div>
+                                    <div class="photo-fullname">{{fullName}} <br> {{formatDate createdAt}}</div>
+                                </div>
                                 {{/if}}
 
                                 {{#if reply}}
@@ -180,8 +188,6 @@
                                 <p class="helpful-count-text"><img src="/assets/symbols/lightbulb.png"><span class="like-counter">{{helpfulMarks}}</span>&nbsp;people found this helpful.</p>
                                 {{/ifGreaterThan}}
 
-
-                                {{!-- TODO --}}
                                 {{#if isLiked}}
                                 <p id="helpful-{{_id}}" class='helpful-tag'><img src='/assets/symbols/lightbulb.png'> You marked this review as helpful.</p>
                                 {{/if}}
@@ -247,7 +253,6 @@
                                 <div id="upload-area" onclick="openPhotoInput()"><img src="/assets/symbols/upload-symbol.png"> Upload a photo</div>
                                 <button id="submit-review" type="submit"> Publish </button>
                                 <script>
-            
                                             $(document).ready(function() {
                                             $('#submit-review').on('click', function() {
                                                     $('#newReview').submit();

@@ -172,12 +172,12 @@ async function getReviewsUnderRestaurant(restaurant, userId){
         let reviewResults = [];
         let count = restaurant.numberOfReviews;
 
+        
         if (userId){
             let currentUser = await User.findById(userId, { _id: 0, reviewsMarkedHelpful: 1 }).exec();
             var currUserReviews = currentUser.reviewsMarkedHelpful;
         }
         
-
         console.log(`Reviews of user: ${currUserReviews}`);
         console.log(typeof currUserReviews);
 
@@ -193,7 +193,8 @@ async function getReviewsUnderRestaurant(restaurant, userId){
             reviewResults[i].authorImage = user.image;
             reviewResults[i].fullName = user.firstname + " " + user.lastname; // format name
 
-            reviewResults[i].isLiked = currUserReviews.includes(review_id);
+            
+            reviewResults[i].isLiked = (userId) ? currUserReviews.includes(review_id) : false;
         }
 
         reviewResults.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt)); // sort by most recent

@@ -44,12 +44,12 @@ router.post('/update-user', processEditUser);
 router.post('/verify-current-password', verifyCurrentPassword);
 router.post('/save-password', changePasswordRequest);
 router.post('/delete-account', deleteUserRequest);
-router.post('/upload-icon', uploadUserImage.single('newUserIcon') , updateUserPhoto);
+router.post('/upload-icon', uploadUserImage.single('newUserIcon') , updateUserPhoto, isAuthenticated);
 
 
 // Create, Edit, Reply to reviews
 router.post('/process-review', uploadReviewMedia.single('newReviewImage'), handleCreateReviewRequest);
-router.post(['/like', '/unlike'], handleLikeUnlikeRequest);
+router.patch(['/like', '/unlike'], handleLikeUnlikeRequest);
 router.post('/process-review-reply', handleReplyReviewRequest);
 router.post('/fetch-review-details', fetchReviewDetails);
 router.post('/update-review', uploadReviewMedia.single('newReviewImage'), updateReviewDetails);

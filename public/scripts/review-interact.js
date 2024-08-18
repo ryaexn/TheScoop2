@@ -1,4 +1,3 @@
-
 // For marking as helpful
 function toggleHelpful(element, reviewId) {
     var $miniReview = $(element).closest('.mini-review');
@@ -14,7 +13,7 @@ function toggleHelpful(element, reviewId) {
         // Send AJAX POST request to /unlike
         $.ajax({
             url: '/unlike',
-            type: 'POST',
+            type: 'PATCH',
             data: {
                 reviewId: reviewId,
                 isUnlike: true,
@@ -41,7 +40,7 @@ function toggleHelpful(element, reviewId) {
         // Send AJAX POST request to /like
         $.ajax({
             url: '/like',
-            type: 'POST',
+            type: 'PATCH',
             data: {
                 reviewId: reviewId,
                 isLike: true,
@@ -145,4 +144,16 @@ function closeReply(event){
     event.preventDefault();
     document.getElementById('overlay').style.display = 'none';
     document.getElementById('replyModal').style.display = 'none';
+}
+
+
+function magnifyPhoto(id){
+    document.getElementById('overlay').style.display = 'block';
+    document.getElementById(`photo-${id}`).style.display = "block"
+}
+
+
+function unmagnifyPhoto(id) {
+    document.getElementById('overlay').style.display = 'none';
+    document.getElementById(`photo-${id}`).style.display = "none";
 }
