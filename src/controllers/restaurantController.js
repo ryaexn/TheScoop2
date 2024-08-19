@@ -172,10 +172,10 @@ async function getReviewsUnderRestaurant(restaurant, userId){
         let reviewResults = [];
         let count = restaurant.numberOfReviews;
 
-        
         if (userId){
-            let currentUser = await User.findById(userId, { _id: 0, reviewsMarkedHelpful: 1 }).exec();
-            var currUserReviews = currentUser.reviewsMarkedHelpful;
+            var currentUser = await User.findById(userId, { _id: 0, reviewsMarkedHelpful: 1 }).exec();
+            if (currentUser)
+                var currUserReviews = currentUser.reviewsMarkedHelpful;
         }
         
         console.log(`Reviews of user: ${currUserReviews}`);
@@ -192,9 +192,8 @@ async function getReviewsUnderRestaurant(restaurant, userId){
             
             reviewResults[i].authorImage = user.image;
             reviewResults[i].fullName = user.firstname + " " + user.lastname; // format name
-
             
-            reviewResults[i].isLiked = (userId) ? currUserReviews.includes(review_id) : false;
+            reviewResults[i].isLiked = (currentUser) ? currUserReviews.includes(review_id) : false;
         }
 
         reviewResults.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt)); // sort by most recent
@@ -227,21 +226,6 @@ async function handleViewRestaurantDetailsRequest(req, resp){
     }
 
     // For Edit Resto Modal
-    // // Initialize flags
-    // let isGelato = false;
-    // let isFrozenYogurt = false;
-    // let isVegan = false;
-    // let isPremium = false;
-    // let isChocolate = false;
-    // let is4Kids = false;
-
-    // // Check tags and set flags
-    // if (restaurant.tag.includes("Gelato")) isGelato = true;
-    // if (restaurant.tag.includes("Frozen Yogurt")) isFrozenYogurt = true;
-    // if (restaurant.tag.includes("Vegan")) isVegan = true;
-    // if (restaurant.tag.includes("Premium")) isPremium = true;
-    // if (restaurant.tag.includes("Chocolate")) isChocolate = true;
-    // if (restaurant.tag.includes("4 Kids")) is4Kids = true;
 
     const tags = {
         isGelato: "Gelato",
@@ -258,13 +242,6 @@ async function handleViewRestaurantDetailsRequest(req, resp){
     
     const { isGelato, isFrozenYogurt, isVegan, isPremium, isChocolate, is4Kids } = flags;
     
-    // console.log(`isGelato: ${isGelato}`);
-    // console.log(`isFrozenYogurt: ${isFrozenYogurt}`);
-    // console.log(`isVegan: ${isVegan}`);
-    // console.log(`isPremium: ${isPremium}`);
-    // console.log(`isChocolate: ${isChocolate}`);
-    // console.log(`is4Kids: ${is4Kids}`);
-    // console.log(`${req.session.isLoggedIn} ? ${req.session.userId} ? ${restaurant._id}`)
 
     // Only owners have edit access
     const hasEditAccess = ( isLoggedIn && (userId == restaurant._id) );
