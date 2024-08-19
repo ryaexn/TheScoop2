@@ -113,22 +113,35 @@ async function handleCreateReviewRequest(req, resp){
 async function handleLikeUnlikeRequest(req, resp){
 
     try {
-        const reviewId = req.body.reviewId
+        const { reviewId } = req.body;
+        const { userId } = req.session;
+
         const review = await Review.findById(reviewId);
-        
-        const like = req.body.isLike == 'true';
+        const like = ( req.body.isLike == 'true' ) ;
         
         if (like) {
             
-            await Review.findByIdAndUpdate(reviewId, {
-                helpfulMarks : review.helpfulMarks + 1
-            });
+            const [rev, user] = await Promise.all([
+                Review.findByIdAndUpdate(reviewId, {
+                    helpfulMarks : review.helpfulMarks + 1
+                }),
+                User.findByIdAndUpdate(userId, {
+                    $addToSet: { reviewsMarkedHelpful: reviewId }
+                }, { new: true})
+            ]);
+            
             resp.send({success: true})
         } else {
             
-            await Review.findByIdAndUpdate(reviewId, {
-                helpfulMarks : (review.helpfulMarks - 1)
-            });
+            await Promise.all([
+                Review.findByIdAndUpdate(reviewId, {
+                    helpfulMarks : review.helpfulMarks - 1
+                }),
+                User.findByIdAndUpdate(userId, {
+                    $pull: { reviewsMarkedHelpful: reviewId }
+                })
+            ]);
+
             resp.send({success: true})
         }
     } catch(err){
@@ -149,7 +162,7 @@ async function fetchReviewDetails(req, resp){
     const { reviewId } = req.body;
     try {
         const review = await Review.findById(reviewId);
-        console.log(review);
+        // console.log(review);
         resp.json(review);
         // resp.send({success: true, review: review});
     } catch (err) {
@@ -162,14 +175,14 @@ async function fetchReviewDetails(req, resp){
 // IF DELETE, newRating = 0
 async function updateRestaurantFromEditReview(review, newRating, isDelete){
     
-    console.log(review);
+    // console.log(review);
     try {
         const restaurant = await Restaurant.findOne({name: review.restoName});
 
         const oldRating = review.rating;
         let reviewCount = restaurant.numberOfReviews;
         
-        console.log(`${reviewCount} ` + typeof reviewCount);
+        // console.log(`${reviewCount} ` + typeof reviewCount);
         var sumRatings = restaurant.rating * reviewCount;
             sumRatings -= review.rating;
 
@@ -218,7 +231,7 @@ async function updateRestaurantFromEditReview(review, newRating, isDelete){
         }
 
         const updatedResto = await Restaurant.findByIdAndUpdate(restaurant._id, data, {new: true, runValidators: true});
-        console.log(updatedResto);
+        // console.log(updatedResto);
        
     } catch (err) {
         console.log("Error updating restaurant review ratings for " + review.restoName);
@@ -230,7 +243,7 @@ async function updateRestaurantFromEditReview(review, newRating, isDelete){
 async function updateReviewDetails(req, resp){
 
     console.log(req.file);
-    console.log(req.body);
+    // console.log(req.body);
     const reviewId =  req.body.reviewId;
 
     try {
@@ -248,10 +261,11 @@ async function updateReviewDetails(req, resp){
             updateRestaurantFromEditReview(currentReview, updateData.rating, false);
         }
 
-        const updatedReview = await Review.findByIdAndUpdate(reviewId, updateData, {runValidators: true, new: true});
-        
-        console.log("OLD Review: "+currentReview)
-        console.log("NEW Review: "+updatedReview);
+        const updatedReview = await Review.findByIdAndUpdate(reviewId, updateData, {runValidators: true, new: true}); 
+
+        //console.log("OLD"+currentReview)
+        //console.log("NEW"+updatedReview);
+
         resp.send({success: true});
     } catch (err) {
         console.log(`Error updating review ${reviewId}`);
@@ -261,7 +275,7 @@ async function updateReviewDetails(req, resp){
 }
 
 async function deleteReviewRequest(req, resp){
-    console.log(req.body.reviewId);
+    console.log('delete ' + req.body.reviewId);
     const r = req.body.reviewId;
     try {
         

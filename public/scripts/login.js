@@ -9,7 +9,6 @@ function openLoginPopUp(){
 }
 
 document.addEventListener("DOMContentLoaded", function() {
-
     // Only add event listener if the login button is present
     if (document.querySelector("#login")){
         document.querySelector("#login").addEventListener("click", function(){
@@ -25,8 +24,7 @@ document.addEventListener("DOMContentLoaded", function() {
 });
 
 // Confirmation message pop-ups after login
-
-// link swal-base.js in 
+// Requirement: link swal-base.js in 
 function showloginSuccessPopup(username) {
     showSuccessPopUp(`Welcome back,\n${username}`,`You have successfully logged in!.`);
 }
@@ -55,55 +53,79 @@ $(document).ready(function() {
     });
 });
 
-// sign up error pop up; fail case 1: username already taken
+// Sign up error pop up based on case
+// Requirement: link swal-base.js in 
 function showSignUpFailed(failCase){
 
     let msg = "Error.";
 
-    if (failCase === 1){
-        msg = 'Username already taken!'
-    } else if (failCase === 2){
-        msg = 'Make sure your passwords match!'
+    switch(failCase){
+        case 1: msg = 'Username already taken!'; break;
+        case 2: msg = 'Make sure your passwords match!'; break;
+        case 3: msg = 'Restaurant name already taken!'; break;
     }
+
     showErrorPopup('Sign up failed!', msg);
 }
 
-function isUsernameUnique(usernameList, username){
-    if (usernameList.includes(username)) {
-        return false;
-    } else {
-        return true;
-    }
+
+async function isUsernameUnique(username){
+    
+    let response = await fetch('/validate-username', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({username: username})
+    })
+   
+   return response.ok;
 }
 
-function validateSignUpForm(usernameList){
+async function validateSignUpForm(){
 
     let username = document.getElementById('reviewer-username').value;
-    var email = document.getElementById('reviewer-email').value;
-    var firstname = document.getElementById('reviewer-firstname').value;
-    var lastname = document.getElementById('reviewer-lastname').value;
-    
-    var password = document.getElementById('reviewer-password').value;
-    var verifyPassword = document.getElementById('reviewer-verify-pass').value;
+    let password = document.getElementById('reviewer-password').value;
+    let verifyPassword = document.getElementById('reviewer-verify-pass').value;
 
-    if (!isUsernameUnique(usernameList, username)){
+    // Username should be unique
+    const isUnique = await isUsernameUnique(username);
+
+    if (!isUnique){
         showSignUpFailed(1);
         return false;
     }
 
-    // Perform validation
+    // Pws should be match
     if (password !== verifyPassword) {
         showSignUpFailed(2);
-        return false; // Prevent form submission
+        return false;
     }
 
     return true;
 }
 
-function validateRestoSignUp(usernameList){
+async function validateRestoSignUp(){
 
     let username = document.getElementById('establishment-username').value;
-    if (!isUsernameUnique(usernameList, username)){
+    let restoName = document.getElementById('establishment-name').value;
+
+    // Restaurant name should  be unique
+    let response = await fetch('/validate-restoname', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({restoName : restoName})
+    });
+    
+    if (!response.ok){
+        showSignUpFailed(3);
+        return false;
+    }
+
+     // Username should be unique
+     if ( !(await isUsernameUnique(username)) ){
         showSignUpFailed(1);
         return false;
     }

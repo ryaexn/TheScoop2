@@ -13,7 +13,7 @@ $(document).ready(function() {
 
         // Injects value on hidden input tag
         $('#newreview-rating').val(Number(finalRating));
-        console.log($('#newreview-rating').val());
+        // console.log($('#newreview-rating').val());
     }
 
     $('.slider-cone').on('mouseenter', function() {

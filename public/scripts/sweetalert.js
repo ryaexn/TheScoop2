@@ -26,7 +26,6 @@ $(document).ready(function() {
 });
 
 // Fake Delete button
-
 $(document).ready(function() {
     $('#fake-delete-account-btn').click(function() {
         Swal.fire({

@@ -1,6 +1,4 @@
 const { addAllUsers } = require('../controllers/userController.js');
-
-// TODO: 
 const { addAllRestaurants } = require('../controllers/restaurantController.js');
 const { addAllReviews } = require('../controllers/reviewController.js');
 

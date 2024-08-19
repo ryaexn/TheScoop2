@@ -39,7 +39,7 @@
 
 .hero-content{
     overflow:visible;
-    min-height: 25vh;
+    min-height: 175px;
 }
 
 #establishment-desc{
@@ -149,3 +149,70 @@
 #submit-review:hover {
   background-color: rgb(252, 251, 251);
 }
+
+
+.invisible {
+  display: none;
+}
+
+.yellowed {
+  background-color: #ffd12f;
+}
+
+.view-review.helpful-btn.yellowed:hover{
+  background-color: transparent;
+}
+
+
+/* PHOTO MODAL */
+.photoModal {
+  display: none; 
+  position: fixed;
+  z-index: 1000; 
+  left: 40%;
+  top: 28%;
+  width: 400px;
+
+  background-color: aliceblue;
+  padding: 1.2rem;
+  border-radius: 1rem;
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+}
+
+/* Photo Modal Content */
+.photoModal-content {
+  display: block;
+  width: 100% !important;
+  margin-bottom: 1rem;
+}
+
+.close {
+  position: absolute;
+  top: 15px;
+  right: 32px;
+  color: white;
+  font-size: 2rem;
+  cursor: pointer;
+}
+
+.close:hover,
+.close:focus {
+  color: #bbb;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+
+.photo-caption{
+  text-align: center;
+  font-family: 'GlamourAbsolute_Regular', sans-serif ;
+  font-size: 1.8rem;
+  margin-bottom: 0.5rem;
+}
+
+.photo-fullname{
+  text-align: center;
+  font-size: 0.9rem;
+  color: rgb(133, 125, 125);
+}
+

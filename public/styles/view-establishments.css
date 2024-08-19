@@ -237,6 +237,7 @@
 }
 
 .gallery-slot{
+    position: relative;
     width: 100%;
     flex: 1;
 }

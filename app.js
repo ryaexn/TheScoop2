@@ -69,14 +69,15 @@ async function main(){
             
             await connect();
             console.log(`Now connected to MongoDB`);
-        //     // await checkDatabase().then( (dbExists) => {
-        //     //  console.log(dbExists);
-        //     //     if (!dbExists){
-        //              await loadRestaurants();
-        //              await loadUsers();
-        //              await loadReviews();
-        //         // }
-        // //  });
+
+            await checkDatabase().then( (dbExists) => {
+                console.log(dbExists);
+                if (!dbExists){
+                    loadRestaurants();
+                    loadUsers();
+                    loadReviews();
+                }
+         });
             
         } catch (err) {
             console.log('Connection to MongoDB failed:');
@@ -84,9 +85,9 @@ async function main(){
         }
     });
 
-    // process.on('SIGTERM',finalClose);  
-    // process.on('SIGINT', finalClose); 
-    // process.on('SIGQUIT', finalClose);
+    process.on('SIGTERM',finalClose);  
+    process.on('SIGINT', finalClose); 
+    process.on('SIGQUIT', finalClose);
 }
 
 main();

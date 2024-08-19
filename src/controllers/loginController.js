@@ -27,7 +27,7 @@ async function loginUser(req, username, password) {
                     req.session.userIcon = restaurantUser.media[1];
                     req.session['isLoggedIn'] = true;
                     req.session['isOwnerLoggedIn'] = true;
-                    return { success: true, redirectUrl: "/view-restaurant/" + restaurantUser._id };
+                    return { success: true, redirectUrl: `/view-restaurant/${restaurantUser._id}`};
                 }
             }
         }
@@ -56,12 +56,15 @@ async function handleLoginRequest(req, res) {
     }
 }
 
-async function getAllUsernames(){
+async function validateUsername(req, res){
     try {
-        const user_usernames = await User.find({}, 'username').exec();
+        const {username} = req.body;
 
-        // Get all usernames from Restaurant collection
-        const restaurant_usernames = await Restaurant.find({}, 'username').exec();
+        // Get usernames from user and restaurant collections
+        const [user_usernames, restaurant_usernames] = await Promise.all([
+            User.find({}, 'username').exec(),
+            Restaurant.find({}, 'username').exec()
+        ]);
 
         // Extract usernames from documents and combine into one array
         const all_usernames = [
@@ -69,24 +72,56 @@ async function getAllUsernames(){
             ...restaurant_usernames.map(doc => doc.username)
         ];
 
-        console.log("All usernames:", all_usernames);
-        return all_usernames;
+        if (!all_usernames.includes(username)){
+            res.status(200).json({message: "OK"});
+        } else {
+            res.status(400).json({error: "Username already exists."});
+        }
+
     } catch (err) {
         console.log("Error getting all usernames.")
         console.error(err);
+        res.status(400).send("Error validating usernames.");
+        return;
+    }
+}
+
+async function validateRestoName(req, res){
+
+    try {
+
+        const {restoName} = req.body;
+        const matches = await Restaurant.countDocuments({name: restoName.trim()});
+
+        if (matches != 0){
+            res.status(400).json({error: "Restaurant name already exists."});
+        } else {
+            res.status(200).json({message: "OK"});
+        }
+
+    } catch (err) {
+        console.log("Error getting resto names.");
+        console.log(err);
+        res.status(500).send("Internal server error");
     }
 }
 
 // This only redirects to sign up page
 async function handleSignUpRequest(req, res){
     
-    const allUsernames = await getAllUsernames();
-    console.log(`Users: ${JSON.stringify(allUsernames)}`);
+    // const allUsernames = await getAllUsernames();
+    // console.log(`Users: ${JSON.stringify(allUsernames)}`);
 
     res.render('sign-up', {
-        usernameList: JSON.stringify(allUsernames)
+        // usernameList: JSON.stringify(allUsernames)
 
-        });
+    });
 }
 
-module.exports = {handleLoginRequest, handleLogoutRequest, handleSignUpRequest}
+module.exports = {
+    handleLoginRequest, 
+    handleLogoutRequest, 
+    validateUsername,
+    validateRestoName,
+    handleSignUpRequest
+}

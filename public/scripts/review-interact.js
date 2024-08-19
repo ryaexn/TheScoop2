@@ -1,18 +1,19 @@
-
 // For marking as helpful
 function toggleHelpful(element, reviewId) {
     var $miniReview = $(element).closest('.mini-review');
     var $helpfulTag = $miniReview.find('.helpful-tag');
     var $helpfulCountText = $miniReview.find('.like-counter');
+    var $helpfulButton = $miniReview.find('.helpful-btn');
 
     if ($helpfulTag.length) {
         // Remove the helpful tag
         $helpfulTag.remove();
+        $helpfulButton.removeClass('yellowed');
 
         // Send AJAX POST request to /unlike
         $.ajax({
             url: '/unlike',
-            type: 'POST',
+            type: 'PATCH',
             data: {
                 reviewId: reviewId,
                 isUnlike: true,
@@ -33,13 +34,13 @@ function toggleHelpful(element, reviewId) {
         });
 
     } else {
-        // Add the helpful tag
-        var newParagraph = $("<p class='helpful-tag'><img src='/assets/symbols/lightbulb.png'> You marked this review as helpful.</p>");
-        
+        // Make the helpful tag
+        var newParagraph = $(`<p id="helpful-${reviewId}" class='helpful-tag'><img src='/assets/symbols/lightbulb.png'> You marked this review as helpful.</p>`);
+        $helpfulButton.addClass('yellowed');
         // Send AJAX POST request to /like
         $.ajax({
             url: '/like',
-            type: 'POST',
+            type: 'PATCH',
             data: {
                 reviewId: reviewId,
                 isLike: true,
@@ -57,6 +58,7 @@ function toggleHelpful(element, reviewId) {
                  else{
                     var newHelpfulCountText = $(`<p class="helpful-count-text"><img src="/assets/symbols/lightbulb.png"><span class="like-counter">1</span>&nbsp;people found this helpful.</p>`);
 
+                    // Add the helpful tags
                     $miniReview.find('.text-area').append(newHelpfulCountText);
                     $miniReview.find('.text-area').append(newParagraph);
                  }
@@ -142,4 +144,16 @@ function closeReply(event){
     event.preventDefault();
     document.getElementById('overlay').style.display = 'none';
     document.getElementById('replyModal').style.display = 'none';
+}
+
+
+function magnifyPhoto(id){
+    document.getElementById('overlay').style.display = 'block';
+    document.getElementById(`photo-${id}`).style.display = "block"
+}
+
+
+function unmagnifyPhoto(id) {
+    document.getElementById('overlay').style.display = 'none';
+    document.getElementById(`photo-${id}`).style.display = "none";
 }

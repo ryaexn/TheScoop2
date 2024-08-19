@@ -167,28 +167,38 @@ async function searchRestaurantByName(targetName){
     }
 }
 
-async function getReviewsUnderRestaurant(restaurant){
+async function getReviewsUnderRestaurant(restaurant, userId){
     try {
         let reviewResults = [];
         let count = restaurant.numberOfReviews;
 
+        
+        if (userId){
+            let currentUser = await User.findById(userId, { _id: 0, reviewsMarkedHelpful: 1 }).exec();
+            var currUserReviews = currentUser.reviewsMarkedHelpful;
+        }
+        
+        console.log(`Reviews of user: ${currUserReviews}`);
+        console.log(typeof currUserReviews);
+
         for (let i=count-1; i >= 0; i--){
             
-            // find review given reviews arr of restaurant
+            // Find review given reviews arr of restaurant
             let review_id = restaurant.reviews[i];
-            reviewResults[i] = await Review.findById(review_id).exec();
-
-            // console.log(`i = ${i}`,reviewResults[i]);
-            reviewResults[i] = reviewResults[i].toObject();
+            reviewResults[i] = await Review.findById(review_id).lean().exec();
 
             // find associated user given the review found
             let user = await User.findOne({username: reviewResults[i].username}).exec();
             
             reviewResults[i].authorImage = user.image;
             reviewResults[i].fullName = user.firstname + " " + user.lastname; // format name
+
+            
+            reviewResults[i].isLiked = (userId) ? currUserReviews.includes(review_id) : false;
         }
 
         reviewResults.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt)); // sort by most recent
+        console.log(reviewResults);
         
         return reviewResults;
     } catch(err) {
@@ -205,31 +215,48 @@ async function handleViewRestaurantDetailsRequest(req, resp){
     const restaurantId = req.params.id; 
     const restoName = req.params.restoName;
 
+    const { userId, isLoggedIn } = req.session;
+
     if(restaurantId){
         var restaurant = await searchRestaurantById(restaurantId);
     } else {
         var restaurant = await searchRestaurantByName(restoName);
     }
     if (restaurant.numberOfReviews > 0){
-        var associatedReviews = await getReviewsUnderRestaurant(restaurant);
+        var associatedReviews = await getReviewsUnderRestaurant(restaurant, userId);
     }
 
     // For Edit Resto Modal
-    // Initialize flags
-    let isGelato = false;
-    let isFrozenYogurt = false;
-    let isVegan = false;
-    let isPremium = false;
-    let isChocolate = false;
-    let is4Kids = false;
+    // // Initialize flags
+    // let isGelato = false;
+    // let isFrozenYogurt = false;
+    // let isVegan = false;
+    // let isPremium = false;
+    // let isChocolate = false;
+    // let is4Kids = false;
 
-    // Check tags and set flags
-    if (restaurant.tag.includes("Gelato")) isGelato = true;
-    if (restaurant.tag.includes("Frozen Yogurt")) isFrozenYogurt = true;
-    if (restaurant.tag.includes("Vegan")) isVegan = true;
-    if (restaurant.tag.includes("Premium")) isPremium = true;
-    if (restaurant.tag.includes("Chocolate")) isChocolate = true;
-    if (restaurant.tag.includes("4 Kids")) is4Kids = true;
+    // // Check tags and set flags
+    // if (restaurant.tag.includes("Gelato")) isGelato = true;
+    // if (restaurant.tag.includes("Frozen Yogurt")) isFrozenYogurt = true;
+    // if (restaurant.tag.includes("Vegan")) isVegan = true;
+    // if (restaurant.tag.includes("Premium")) isPremium = true;
+    // if (restaurant.tag.includes("Chocolate")) isChocolate = true;
+    // if (restaurant.tag.includes("4 Kids")) is4Kids = true;
+
+    const tags = {
+        isGelato: "Gelato",
+        isFrozenYogurt: "Frozen Yogurt",
+        isVegan: "Vegan",
+        isPremium: "Premium",
+        isChocolate: "Chocolate",
+        is4Kids: "4 Kids"
+    };
+    
+    const flags = Object.fromEntries(
+        Object.entries(tags).map(([key, value]) => [key, restaurant.tag.includes(value)])
+    );
+    
+    const { isGelato, isFrozenYogurt, isVegan, isPremium, isChocolate, is4Kids } = flags;
     
     // console.log(`isGelato: ${isGelato}`);
     // console.log(`isFrozenYogurt: ${isFrozenYogurt}`);
@@ -240,7 +267,7 @@ async function handleViewRestaurantDetailsRequest(req, resp){
     // console.log(`${req.session.isLoggedIn} ? ${req.session.userId} ? ${restaurant._id}`)
 
     // Only owners have edit access
-    const hasEditAccess = ( req.session.isLoggedIn && (req.session.userId == restaurant._id) );
+    const hasEditAccess = ( isLoggedIn && (userId == restaurant._id) );
 
     console.log(`Edit Access: ${hasEditAccess}`);
     
@@ -276,7 +303,7 @@ async function createNewRestaurant(body){
         });
 
         const resto = await restaurantData.save();
-        console.log(resto);
+        // console.log(resto);
 
         return resto;
     } catch(err){
@@ -289,7 +316,7 @@ async function processSignUpRestaurant(req, res){
     console.log(req.body);
     
     const newRestaurant = await createNewRestaurant(req.body);
-        console.log(newRestaurant);
+        // console.log(newRestaurant);
 
     const restoName = req.body.restoname;
 
@@ -304,7 +331,7 @@ async function processSignUpRestaurant(req, res){
 }   
 
 async function updateRestaurantPhoto(req, res){
-    console.log(req.body);
+    // console.log(req.body);
     console.log(req.file);
 
     const userId = req.session.userId;
@@ -314,7 +341,7 @@ async function updateRestaurantPhoto(req, res){
         if (req.file){
             const resto = await Restaurant.findByIdAndUpdate(userId, {$set: { [`media.${index}`] : req.file.filename} }, {new:true});
             res.success = true;
-            console.log(resto);
+            // console.log(resto);
         }
         res.send({success: true});
     } catch(err){
@@ -355,9 +382,7 @@ async function updateRestaurant(restoId, body){
             tag: tags 
         };
 
-        
         // const updatedResto = await Restaurant.find()
-
 
         const updatedResto = await Restaurant.findByIdAndUpdate(restoId, restoData, 
             {runValidators: true});
@@ -366,7 +391,7 @@ async function updateRestaurant(restoId, body){
             await Review.updateMany({restoName: updatedResto.name}, { $set: {restoName: restoData.name}});
         }
 
-        console.log(updatedResto);
+        // console.log(updatedResto);
         
     } catch(err){
         console.log(`Error updating restaurant of id: ${restoId}`);
@@ -376,7 +401,7 @@ async function updateRestaurant(restoId, body){
 
 async function handleEditRestaurantRequest(req, res){
     
-    console.log(req.body);
+    // console.log(req.body);
     const restoId = req.session.userId;
         
     try {
@@ -399,7 +424,7 @@ async function deleteRestaurantRequest(req, resp){
 
         const updatedUser = await Restaurant.findByIdAndUpdate(userId, updateData, { new: true, runValidators: true });
 
-        console.log(updatedUser.name);
+        // console.log(updatedUser.name);
         const name = updatedUser.name;
         await Review.updateMany({restoName: name }, {isDeleted: true, deletedAt: Date.now()});
         
@@ -415,15 +440,15 @@ async function deleteRestaurantRequest(req, resp){
 async function handleReplyReviewRequest(req, resp){
 
     try {   
-        console.log(req.body.replyMessage);
-        console.log(req.body.reviewId);
+        //console.log(req.body.replyMessage);
+        //console.log(req.body.reviewId);
 
         const reviewId = req.body.reviewId;
         const rep = req.body.replyMessage;
         const restoId = req.session.userId;
 
         const review = await Review.findByIdAndUpdate(reviewId, { reply: rep }, {new: true});
-        console.log(review);
+        // console.log(review);
         
         resp.redirect(`/view-restaurant/${restoId}#review${reviewId}`);
 

@@ -77,7 +77,7 @@ $(document).ready(function() {
           const reader = new FileReader();
           reader.onload = function(e) {
               $('#user-icon-img').attr('src', e.target.result);
-              console.log(file);
+              // console.log(file);
           }
 
           reader.readAsDataURL(file);
@@ -92,15 +92,16 @@ $(document).ready(function() {
               contentType: false,
               processData: false,
               success: function(response) {
-                  
-                  console.log('Upload successful:', response);
+                  showSuccessPopUp("Lookin' good!", "Your profile picture was updated.");
+                  console.log('Upload successful:', response.message);
               },
               error: function(error) {
+                  showErrorPopup("Failed to upload profile picture", "There may have been problems with your file input.");
                   console.error('Upload failed:', error);
               }
           });
 
-          showSuccessPopUp("Profile Picture Updated", "");
+          
       }
   });
 });

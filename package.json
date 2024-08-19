@@ -3,7 +3,9 @@
   "version": "1.0.0",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app.js",
+    "dev": "nodemon app.js"
   },
   "dependencies": {
     "bcryptjs": "^2.4.3",
@@ -22,6 +24,8 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "description": "",
-  "devDependencies": {}
+  "description": "The Scoop is a simple web platform that aims to gather frozen dessert connoisseurs. Inspired by review blogs online, it aims to let sweet-tooth havers be able to share their experience with others through a simple web interface.",
+  "devDependencies": {
+    "nodemon": "^3.1.4"
+  }
 }
