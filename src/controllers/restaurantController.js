@@ -174,8 +174,9 @@ async function getReviewsUnderRestaurant(restaurant, userId){
 
         
         if (userId){
-            let currentUser = await User.findById(userId, { _id: 0, reviewsMarkedHelpful: 1 }).exec();
-            var currUserReviews = currentUser.reviewsMarkedHelpful;
+            var currentUser = await User.findById(userId, { _id: 0, reviewsMarkedHelpful: 1 }).exec();
+            if (currentUser)
+                var currUserReviews = currentUser.reviewsMarkedHelpful;
         }
         
         console.log(`Reviews of user: ${currUserReviews}`);
@@ -188,13 +189,13 @@ async function getReviewsUnderRestaurant(restaurant, userId){
             reviewResults[i] = await Review.findById(review_id).lean().exec();
 
             // find associated user given the review found
-            let user = await User.findOne({username: reviewResults[i].username}).exec();
+            let user = await User.findOne({username: reviewResults[i].username}, 
+                { image: 1, firstname: 1, lastname: 1}).exec();
             
             reviewResults[i].authorImage = user.image;
             reviewResults[i].fullName = user.firstname + " " + user.lastname; // format name
-
             
-            reviewResults[i].isLiked = (userId) ? currUserReviews.includes(review_id) : false;
+            reviewResults[i].isLiked = (currentUser) ? currUserReviews.includes(review_id) : false;
         }
 
         reviewResults.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt)); // sort by most recent
