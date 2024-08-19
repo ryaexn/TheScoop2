@@ -55,7 +55,7 @@ router.post('/fetch-review-details', fetchReviewDetails);
 router.post('/update-review', uploadReviewMedia.single('newReviewImage'), updateReviewDetails);
 router.post('/delete-review', deleteReviewRequest);
 
-// // // TODO: Handle missing pages 
+// Handle missing pages 
 router.get('*', (req, resp) => {
     console.log("404");
     resp.redirect("/?error=true");
