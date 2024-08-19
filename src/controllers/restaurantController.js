@@ -188,7 +188,8 @@ async function getReviewsUnderRestaurant(restaurant, userId){
             reviewResults[i] = await Review.findById(review_id).lean().exec();
 
             // find associated user given the review found
-            let user = await User.findOne({username: reviewResults[i].username}).exec();
+            let user = await User.findOne({username: reviewResults[i].username}, 
+                { image: 1, firstname: 1, lastname: 1}).exec();
             
             reviewResults[i].authorImage = user.image;
             reviewResults[i].fullName = user.firstname + " " + user.lastname; // format name
