@@ -159,6 +159,7 @@ button:hover {
     transition: box-shadow 200ms ease 0s, transform 200ms ease 0s;
 
     width: 20vw;
+    min-width: 300px;
 }
 
 .establishments-showcase:hover{
@@ -177,7 +178,7 @@ button:hover {
     top:0;
     aspect-ratio: 1;
     min-width: 300px;
-    width: 20vw;
+    width: 100%;
     border-bottom: black solid 1px;
 }
 
@@ -383,4 +384,32 @@ button:hover {
 
 .hero-review{
     height: 145px;
+}
+
+.establishment-details{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* In response to resizing horizontally */
+@media only screen and (max-width: 1148px){
+    .establishments-area{
+      flex-direction: column;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .establishments-showcase{
+        flex-direction: row;
+        width: 80%;
+    }
+
+    .establishments-showcase > img {
+        width: 300px;
+    }
+
+    .establishment-details{
+        width: 100%;
+    }
 }

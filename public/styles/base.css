@@ -30,7 +30,6 @@ li, a, button{
 }
 
 input[type="checkbox" i] {
-
     cursor: pointer;
 }
 
@@ -40,13 +39,13 @@ header {
     z-index: 90;
     top:0;
     height: 8.5vh;
-
+    min-height: 71px;
     background-color: white;
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding-left: 5%;
-    padding-right: 11%;
+    padding-right: 9%;
     padding-block: 20px;
     border-bottom:  solid 1px  #1b4d7a;
 } 
@@ -61,9 +60,51 @@ header > a {
     /* width: 300px; */
 }
 
+@media only screen and (max-width: 975px) {
+    #logo-name{
+        display: none;
+    }
+
+    .logo {
+        width: 60px;
+        max-width: 60px !important;
+    }
+
+    header {
+        justify-content: space-around;
+        gap: 1vw;
+        padding-left: 5%;
+        padding-right: 5%;
+    }
+
+    .nav__links li a {
+        font-size: 17px;        
+    }
+
+    .nav__links {
+        justify-self: left !important;
+        white-space: nowrap;
+    }
+
+    .nav__links li {
+        padding: 1vw !important;
+    }
+
+    #login, #logout{
+        display: none;
+    }
+    
+    /* jic */
+    #login button, #logout button{
+        font-size: 14px !important;
+    }
+}
+
 .logo {
     width: max-content;
-    font-size: 40px;
+    max-width: 275px;
+    
+    font-size: 2.5rem;
     color:#1b4d7a;
     font-family: 'Space Grotesk', sans-serif;
     text-transform: uppercase;
@@ -78,14 +119,16 @@ header > a {
 .logo img {
     position: relative;
     width: 15%;
+    min-width: 54.5px;
     bottom: 2px;
 }
 
 .nav__links{
-    position:absolute;
+    position:relative;
     top: 35%;
-    left:35%;
-    right:30%;
+    right: 10%;
+    height: min-content;
+    overflow-x: hidden;
 }
 
 .nav__links li{

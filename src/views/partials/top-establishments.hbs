@@ -11,25 +11,28 @@
             
             <div class="tab-text">{{tag}}</div>
             <img src="assets/{{mainMedia}}">
-            <span class="establishment-name">{{name}}</span>
-            <span class="establishment-rating">
+            <div class="establishment-details">
+                <span class="establishment-name">{{name}}</span>
+                <span class="establishment-rating">
 
-            {{#times rating}}
-                <span class="cone">&#x1f366;</span>
-            {{/times}}
-            {{#times fiveMinusRating}}
-                <span class="cone-greyed">&#x1f366;</span>
-            {{/times}}
-                
-            </span>
-            <hr class="rating-hr">
-            <div class="establishment-rating-num">Current Rating</div>
+                {{#times rating}}
+                    <span class="cone">&#x1f366;</span>
+                {{/times}}
+                {{#times fiveMinusRating}}
+                    <span class="cone-greyed">&#x1f366;</span>
+                {{/times}}
+                    
+                </span>
+                <hr class="rating-hr">
+                <div class="establishment-rating-num">Current Rating</div>
 
-            <span class="establishment-desc">
-                <p style="padding-bottom: 5px;">
-                {{shortDescription}}
-                </p>
-            </span>
+                <span class="establishment-desc">
+                    <p style="padding-bottom: 5px;">
+                    {{shortDescription}}
+                    </p>
+                </span>
+                </div>
+            
         </div>
         {{/each}}
     </div>

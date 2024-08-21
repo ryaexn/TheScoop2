@@ -1,3 +1,5 @@
+var isReviewModalOpen = false;
+
 // edit review modal
 function openEditReviewModal(reviewId){
     // Enable overlay
@@ -5,6 +7,7 @@ function openEditReviewModal(reviewId){
 
     // popup
     document.getElementById('editReviewModal').style.display = 'block';
+    isReviewModalOpen = true;
 
     fetch('/fetch-review-details', {
         method: 'POST',
@@ -33,6 +36,7 @@ function openEditReviewModal(reviewId){
             document.getElementById('change-pic-review').innerHTML = 'Upload a Photo';
         }
         
+        
     })
     .catch(error => console.error('Error:', error));
     
@@ -56,6 +60,7 @@ function closeEditReviewPopup(){
 
     document.getElementById('editReviewModal').style.display= 'none'; // Hide edit popup
     document.getElementById('overlay').style.display= 'none'; // Disable overlay
+    isReviewModalOpen = false;
     
 }
 
@@ -220,5 +225,18 @@ $(document).ready(function() {
           });
         }
       });
+    });
+  });
+
+
+  // Close modal upon escapes
+  $(document).ready(function() {
+    $(document).on('keydown', function(event) {
+      if (event.key === "Escape") {
+      
+        if (isReviewModalOpen){
+          closeEditReviewPopup();
+        }
+      }
     });
   });

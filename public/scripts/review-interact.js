@@ -1,3 +1,8 @@
+const state = {
+    isReplyOpen: false,
+    isPhotoModalOpen: false
+}
+
 // For marking as helpful
 function toggleHelpful(element, reviewId) {
     var $miniReview = $(element).closest('.mini-review');
@@ -103,30 +108,12 @@ function openPhotoInput(){
 
 
 
-// edit review modal
-function editReviewDetails(){
-
-    // Enable overlay
-    document.getElementById('overlay').style.display = 'block';
-
-    // popup
-    document.getElementById('editReviewModal').style.display = 'block';
-}
-
-
-function closeEditReviewPopup(){
-    
-    // Hide edit popup
-    document.getElementById('editReviewModal').style.display= 'none';
-
-    // Disable overlay
-    document.getElementById('overlay').style.display= 'none';
-}
 
 function openReply(id){
 
     document.getElementById('overlay').style.display = 'block';
     document.getElementById('replyModal').style.display = 'block';
+
 
     var form = document.getElementById('replyForm');
     console.log(form);
@@ -137,6 +124,7 @@ function openReply(id){
     hiddenInput.value = id; 
 
     form.appendChild(hiddenInput);
+    state.isReplyOpen = true;
 }
 
 
@@ -144,16 +132,45 @@ function closeReply(event){
     event.preventDefault();
     document.getElementById('overlay').style.display = 'none';
     document.getElementById('replyModal').style.display = 'none';
+
+    state.isReplyOpen = false;
 }
 
 
+var openedPhotoId = null;
+
 function magnifyPhoto(id){
+    state.isPhotoModalOpen = true;
+    openedPhotoId = id;
     document.getElementById('overlay').style.display = 'block';
     document.getElementById(`photo-${id}`).style.display = "block"
 }
 
 
 function unmagnifyPhoto(id) {
+    
     document.getElementById('overlay').style.display = 'none';
     document.getElementById(`photo-${id}`).style.display = "none";
+
+    openedPhotoId = null;
+    state.isPhotoModalOpen = false;
 }
+
+// Close the modal when the user presses the Esc key
+$(document).ready(function() {
+    $(document).on('keydown', function(event) {
+      if (event.key === "Escape") {
+        
+        var isAnyModalOpen = Object.values(state).some(value => value === true);
+        
+        if (isAnyModalOpen){
+            if (state.isPhotoModalOpen) {
+                unmagnifyPhoto(openedPhotoId);
+            }
+            if (state.isReplyOpen){
+                closeReply(event);
+            } 
+        }
+      }
+    });
+  });
