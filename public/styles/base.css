@@ -60,7 +60,11 @@ header > a {
     /* width: 300px; */
 }
 
-@media only screen and (max-width: 975px) {
+@media only screen and (max-width: 985px) {
+
+    .logo img {
+        margin-right: 1;
+    }
     #logo-name{
         display: none;
     }
@@ -77,10 +81,6 @@ header > a {
         padding-right: 5%;
     }
 
-    .nav__links li a {
-        font-size: 17px;        
-    }
-
     .nav__links {
         justify-self: left !important;
         white-space: nowrap;
@@ -94,10 +94,6 @@ header > a {
         display: none;
     }
     
-    /* jic */
-    #login button, #logout button{
-        font-size: 14px !important;
-    }
 }
 
 .logo {

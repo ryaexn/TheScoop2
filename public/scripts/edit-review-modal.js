@@ -233,7 +233,6 @@ $(document).ready(function() {
   $(document).ready(function() {
     $(document).on('keydown', function(event) {
       if (event.key === "Escape") {
-      
         if (isReviewModalOpen){
           closeEditReviewPopup();
         }
